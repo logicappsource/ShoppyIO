@@ -1,37 +1,47 @@
 //
-//  ShoeImageViewController.swift
+//  ShoeImagesPageViewController.swift
 //  Nike+Research
 //
 //  Created by LogicAppSourceIO on 01/06/2017.
 //  Copyright © 2017 Developers Academy. All rights reserved.
-//
+//ShoeImageViewController
 
 import UIKit
 
-class ShoeImageViewController: UIViewController {
+class ShoeImagesPageViewController: UIPageViewController {
     
     
-    @IBOutlet weak var imageView: UIImageView!
+    var images: [UIImage]?
     
-    var image: UIImage?
+    struct Storyboard {
+        static let shoeImageViewController = "ShoeImageViewController"
+    }
+
+    
+    lazy var controllers: [UIViewController] =  {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var controllers = [UIViewController]()
+        
+        if let images = self.images {
+            for image in images {
+                let shoeImageVC = storyboard.instantiateViewController(withIdentifier: Storyboard.shoeImageViewController)
+                controllers.append(shoeImageVC)
+            }
+        }
+        
+        return controllers
+        
+    }()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.imageView.image = image
+        
         
     }
-    
-    
-    
-
-    
-    
-    
-    
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
