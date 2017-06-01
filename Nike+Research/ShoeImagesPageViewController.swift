@@ -4,14 +4,14 @@
 //
 //  Created by LogicAppSourceIO on 01/06/2017.
 //  Copyright © 2017 Developers Academy. All rights reserved.
-//ShoeImageViewController
+//  ShoeImageViewController
 
 import UIKit
 
 class ShoeImagesPageViewController: UIPageViewController {
     
     
-    var images: [UIImage]?
+    var images: [UIImage]?  = Shoe.fetchShoes().first!.images
     
     struct Storyboard {
         static let shoeImageViewController = "ShoeImageViewController"
@@ -37,24 +37,65 @@ class ShoeImagesPageViewController: UIPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         
         automaticallyAdjustsScrollViewInsets = false
         dataSource = self
-       // delegate = self
+        delegate = self
+        self.turnToPage(index: 0)
+        
         
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func turnToPage(index: Int) {
+        let controller = controllers[index]
+        var direction = UIPageViewControllerNavigationDirection.forward
+        
+        if let currentVC = viewControllers?.first {
+            let currentIndex = controllers.index(of: currentVC)
+            
+            if currentIndex! > index {
+                direction = .reverse
+            }
+        }
+        
+        self.configureDisplaying(viewController: controller)
+        
+    
+        setViewControllers([controller], direction: direction, animated: true, completion: nil)
+        
+        
+    }
+    
+    
+    func configureDisplaying(viewController: UIViewController) {
+        
+        for (index, vc) in controllers.enumerated() {
+            if viewController === vc {
+                if let shoeImageVC = viewController as? ShoeImageViewController {
+                    shoeImageVC.image = self.images?[index]
+                }
+            }
+        }
+    }
 
    
     
-}
+    
+    
+    
+    
+    
+    
+    
+} //End Class
 
 //MARK: - UIPAGEVIEWCONTROLLERDATASOURCE
 extension ShoeImagesPageViewController : UIPageViewControllerDataSource{
@@ -83,12 +124,20 @@ extension ShoeImagesPageViewController : UIPageViewControllerDataSource{
     }
     
     
+}
+
+
+extension ShoeImagesPageViewController: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+        self.configureDisplaying(viewController: pendingViewControllers.first as! ShoeImageViewController)
+    }
     
     
-    
-    
-    
-    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if !completed {
+            self.configureDisplaying(viewController: previousViewControllers.first as! ShoeImageViewController)
+        }
+    }
 }
 
 
