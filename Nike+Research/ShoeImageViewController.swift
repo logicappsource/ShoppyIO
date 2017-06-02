@@ -28,9 +28,7 @@ class ShoeImageViewController: UIViewController {
         
     }
     
-    
-    
-    
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

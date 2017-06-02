@@ -8,10 +8,20 @@
 
 import UIKit
 
+
+
+protocol ShoeImagesPageViewControllerDelegate: class {
+    func setupPageController(numberOfPages: Int )
+    func turnPageController(to index: Int )
+}
+
 class ShoeImagesPageViewController: UIPageViewController {
     
     
     var images: [UIImage]?  = Shoe.fetchShoes().first!.images
+    
+    weak var pageViewControllerDelegate: ShoeImagesPageViewControllerDelegate?
+    
     
     struct Storyboard {
         static let shoeImageViewController = "ShoeImageViewController"
@@ -29,6 +39,9 @@ class ShoeImagesPageViewController: UIPageViewController {
                 controllers.append(shoeImageVC)
             }
         }
+        
+        
+        self.pageViewControllerDelegate?.setupPageController(numberOfPages: controllers.count)
         
         return controllers
         
@@ -81,6 +94,8 @@ class ShoeImagesPageViewController: UIPageViewController {
             if viewController === vc {
                 if let shoeImageVC = viewController as? ShoeImageViewController {
                     shoeImageVC.image = self.images?[index]
+                    
+                    self.pageViewControllerDelegate?.turnPageController(to: index)
                 }
             }
         }
@@ -89,10 +104,7 @@ class ShoeImagesPageViewController: UIPageViewController {
    
     
     
-    
-    
-    
-    
+
     
     
 } //End Class

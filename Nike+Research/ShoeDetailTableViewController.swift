@@ -12,6 +12,11 @@ class ShoeDetailTableViewController : UITableViewController
 {
     var shoe: Shoe!
     
+    @IBOutlet weak var shoeImagesHeaderView: ShoeImagesHeaderView!
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +35,23 @@ class ShoeDetailTableViewController : UITableViewController
         static let suggestionCell = "SuggestionCell"
         static let buyButtonCell = "BuyButtonCell"
     }
+    
+    
+    
+   
+    
+    
+    //MARK : - Navigation 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Storyboard.showImagesPageVC {
+            if let imagesPageVC = segue.destination as? ShoeImagesPageViewController {
+                imagesPageVC.images = shoe.images
+                imagesPageVC.pageViewControllerDelegate = shoeImagesHeaderView
+            }
+        }
+    }
+    
+    
 }
 
 extension ShoeDetailTableViewController
