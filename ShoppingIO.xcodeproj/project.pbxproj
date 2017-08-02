@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D78B3B3FA2ECC11F8EFA656 /* Pods_ShoppingIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECB7DC46FBEAF68E146F2982 /* Pods_ShoppingIO.framework */; };
 		52E3D2121E7F0D990064B02E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3D2111E7F0D990064B02E /* AppDelegate.swift */; };
 		52E3D2141E7F0D990064B02E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3D2131E7F0D990064B02E /* ViewController.swift */; };
 		52E3D2171E7F0D990064B02E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E3D2151E7F0D990064B02E /* Main.storyboard */; };
@@ -21,6 +22,11 @@
 		52E3D2391E7F53EB0064B02E /* SuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3D2381E7F53EB0064B02E /* SuggestionTableViewCell.swift */; };
 		52F7B6131E7F955D00735A46 /* ShoppingBagTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F7B6121E7F955D00735A46 /* ShoppingBagTableViewController.swift */; };
 		52F7B6161E7F9F7E00735A46 /* CheckoutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F7B6151E7F9F7E00735A46 /* CheckoutTableViewController.swift */; };
+		6E09524A1F31F49C0016102E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6E0952491F31F49C0016102E /* GoogleService-Info.plist */; };
+		6E6D56961EF91D48008289BB /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6D56951EF91D48008289BB /* AuthViewController.swift */; };
+		6E79509A1EF91629005633F5 /* BuyButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7950991EF91629005633F5 /* BuyButtonCell.swift */; };
+		6E79509C1EF91643005633F5 /* ProductDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E79509B1EF91643005633F5 /* ProductDetailCell.swift */; };
+		6E7950A11EF9183F005633F5 /* ProductDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7950A01EF9183F005633F5 /* ProductDetailVC.swift */; };
 		6E8847D01EE02FB0001CC971 /* ShoeImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8847CF1EE02FB0001CC971 /* ShoeImageViewController.swift */; };
 		6E8847D21EE0305D001CC971 /* ShoeImagesPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8847D11EE0305D001CC971 /* ShoeImagesPageViewController.swift */; };
 		6E8847D41EE046C1001CC971 /* ShoeImagesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E8847D31EE046C1001CC971 /* ShoeImagesHeaderView.swift */; };
@@ -28,7 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		52E3D20E1E7F0D990064B02E /* Nike+Research.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nike+Research.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		077C35D0FEDE7E9E1F82A252 /* Pods-ShoppingIO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingIO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShoppingIO/Pods-ShoppingIO.debug.xcconfig"; sourceTree = "<group>"; };
+		52E3D20E1E7F0D990064B02E /* ShoppingIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShoppingIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E3D2111E7F0D990064B02E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E3D2131E7F0D990064B02E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		52E3D2161E7F0D990064B02E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -44,10 +51,17 @@
 		52E3D2381E7F53EB0064B02E /* SuggestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuggestionTableViewCell.swift; sourceTree = "<group>"; };
 		52F7B6121E7F955D00735A46 /* ShoppingBagTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingBagTableViewController.swift; sourceTree = "<group>"; };
 		52F7B6151E7F9F7E00735A46 /* CheckoutTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckoutTableViewController.swift; sourceTree = "<group>"; };
+		6E0952491F31F49C0016102E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6E6D56951EF91D48008289BB /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		6E7950991EF91629005633F5 /* BuyButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyButtonCell.swift; sourceTree = "<group>"; };
+		6E79509B1EF91643005633F5 /* ProductDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailCell.swift; sourceTree = "<group>"; };
+		6E7950A01EF9183F005633F5 /* ProductDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailVC.swift; sourceTree = "<group>"; };
 		6E8847CF1EE02FB0001CC971 /* ShoeImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoeImageViewController.swift; sourceTree = "<group>"; };
 		6E8847D11EE0305D001CC971 /* ShoeImagesPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoeImagesPageViewController.swift; sourceTree = "<group>"; };
 		6E8847D31EE046C1001CC971 /* ShoeImagesHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoeImagesHeaderView.swift; sourceTree = "<group>"; };
 		6E96D1B81EF4008D0027A890 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		A4E4010EDD1864E252A764C1 /* Pods-ShoppingIO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShoppingIO.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShoppingIO/Pods-ShoppingIO.release.xcconfig"; sourceTree = "<group>"; };
+		ECB7DC46FBEAF68E146F2982 /* Pods_ShoppingIO.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShoppingIO.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,24 +69,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D78B3B3FA2ECC11F8EFA656 /* Pods_ShoppingIO.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3796107B5090533ED5DA9E40 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				ECB7DC46FBEAF68E146F2982 /* Pods_ShoppingIO.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		52E3D2051E7F0D990064B02E = {
 			isa = PBXGroup;
 			children = (
 				52E3D2101E7F0D990064B02E /* Nike+Research */,
 				52E3D20F1E7F0D990064B02E /* Products */,
+				571FB512452178DCD3FF3656 /* Pods */,
+				3796107B5090533ED5DA9E40 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		52E3D20F1E7F0D990064B02E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				52E3D20E1E7F0D990064B02E /* Nike+Research.app */,
+				52E3D20E1E7F0D990064B02E /* ShoppingIO.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,17 +105,17 @@
 		52E3D2101E7F0D990064B02E /* Nike+Research */ = {
 			isa = PBXGroup;
 			children = (
+				6E79509D1EF9166F005633F5 /* Storyboards */,
 				52E3D2111E7F0D990064B02E /* AppDelegate.swift */,
 				52E3D2131E7F0D990064B02E /* ViewController.swift */,
-				52E3D2151E7F0D990064B02E /* Main.storyboard */,
 				52E3D2331E7F43FD0064B02E /* MODEL */,
 				52E3D2321E7F43DB0064B02E /* DETAIL */,
 				52E3D2311E7F43BD0064B02E /* FEED */,
 				52F7B6141E7F956100735A46 /* SHOPPING BAG */,
 				52E3D2181E7F0D990064B02E /* Assets.xcassets */,
-				52E3D21A1E7F0D990064B02E /* LaunchScreen.storyboard */,
 				52E3D21D1E7F0D990064B02E /* Info.plist */,
-				6E96D1B81EF4008D0027A890 /* Product.swift */,
+				6E0952491F31F49C0016102E /* GoogleService-Info.plist */,
+				6E6D56951EF91D48008289BB /* AuthViewController.swift */,
 			);
 			path = "Nike+Research";
 			sourceTree = "<group>";
@@ -98,8 +123,8 @@
 		52E3D2311E7F43BD0064B02E /* FEED */ = {
 			isa = PBXGroup;
 			children = (
-				52E3D2251E7F136C0064B02E /* FeedTableViewController.swift */,
-				52E3D2271E7F14320064B02E /* FeedShoeTableViewCell.swift */,
+				6E79509F1EF9169C005633F5 /* Views */,
+				6E79509E1EF91692005633F5 /* Controllers */,
 			);
 			name = FEED;
 			sourceTree = "<group>";
@@ -118,6 +143,7 @@
 		52E3D2331E7F43FD0064B02E /* MODEL */ = {
 			isa = PBXGroup;
 			children = (
+				6E96D1B81EF4008D0027A890 /* Product.swift */,
 				52E3D2231E7F0DAD0064B02E /* Shoe.swift */,
 			);
 			name = MODEL;
@@ -143,24 +169,64 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		571FB512452178DCD3FF3656 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				077C35D0FEDE7E9E1F82A252 /* Pods-ShoppingIO.debug.xcconfig */,
+				A4E4010EDD1864E252A764C1 /* Pods-ShoppingIO.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6E79509D1EF9166F005633F5 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				52E3D21A1E7F0D990064B02E /* LaunchScreen.storyboard */,
+				52E3D2151E7F0D990064B02E /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		6E79509E1EF91692005633F5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				52E3D2251E7F136C0064B02E /* FeedTableViewController.swift */,
+				6E7950A01EF9183F005633F5 /* ProductDetailVC.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		6E79509F1EF9169C005633F5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6E79509B1EF91643005633F5 /* ProductDetailCell.swift */,
+				6E7950991EF91629005633F5 /* BuyButtonCell.swift */,
+				52E3D2271E7F14320064B02E /* FeedShoeTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		52E3D20D1E7F0D990064B02E /* Nike+Research */ = {
+		52E3D20D1E7F0D990064B02E /* ShoppingIO */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52E3D2201E7F0D990064B02E /* Build configuration list for PBXNativeTarget "Nike+Research" */;
+			buildConfigurationList = 52E3D2201E7F0D990064B02E /* Build configuration list for PBXNativeTarget "ShoppingIO" */;
 			buildPhases = (
+				000835F9BE2F2AAE60C84BF6 /* [CP] Check Pods Manifest.lock */,
 				52E3D20A1E7F0D990064B02E /* Sources */,
 				52E3D20B1E7F0D990064B02E /* Frameworks */,
 				52E3D20C1E7F0D990064B02E /* Resources */,
+				DD8567A886EA921B12DC6E73 /* [CP] Embed Pods Frameworks */,
+				9D5B08326AEB99E4ECC9DD62 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "Nike+Research";
+			name = ShoppingIO;
 			productName = "Nike+Research";
-			productReference = 52E3D20E1E7F0D990064B02E /* Nike+Research.app */;
+			productReference = 52E3D20E1E7F0D990064B02E /* ShoppingIO.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -171,7 +237,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
-				ORGANIZATIONNAME = "Developers Academy";
+				ORGANIZATIONNAME = LogicappsourceIO;
 				TargetAttributes = {
 					52E3D20D1E7F0D990064B02E = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -180,7 +246,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 52E3D2091E7F0D990064B02E /* Build configuration list for PBXProject "Nike+Research" */;
+			buildConfigurationList = 52E3D2091E7F0D990064B02E /* Build configuration list for PBXProject "ShoppingIO" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -193,7 +259,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				52E3D20D1E7F0D990064B02E /* Nike+Research */,
+				52E3D20D1E7F0D990064B02E /* ShoppingIO */,
 			);
 		};
 /* End PBXProject section */
@@ -204,12 +270,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				52E3D21C1E7F0D990064B02E /* LaunchScreen.storyboard in Resources */,
+				6E09524A1F31F49C0016102E /* GoogleService-Info.plist in Resources */,
 				52E3D2191E7F0D990064B02E /* Assets.xcassets in Resources */,
 				52E3D2171E7F0D990064B02E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		000835F9BE2F2AAE60C84BF6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9D5B08326AEB99E4ECC9DD62 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShoppingIO/Pods-ShoppingIO-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD8567A886EA921B12DC6E73 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShoppingIO/Pods-ShoppingIO-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		52E3D20A1E7F0D990064B02E /* Sources */ = {
@@ -223,12 +338,16 @@
 				52F7B6131E7F955D00735A46 /* ShoppingBagTableViewController.swift in Sources */,
 				52E3D2351E7F442B0064B02E /* ShoeDetailCell.swift in Sources */,
 				52E3D2141E7F0D990064B02E /* ViewController.swift in Sources */,
+				6E7950A11EF9183F005633F5 /* ProductDetailVC.swift in Sources */,
 				6E8847D21EE0305D001CC971 /* ShoeImagesPageViewController.swift in Sources */,
 				6E8847D01EE02FB0001CC971 /* ShoeImageViewController.swift in Sources */,
 				52E3D2121E7F0D990064B02E /* AppDelegate.swift in Sources */,
+				6E79509A1EF91629005633F5 /* BuyButtonCell.swift in Sources */,
 				52E3D2281E7F14320064B02E /* FeedShoeTableViewCell.swift in Sources */,
 				52E3D2261E7F136C0064B02E /* FeedTableViewController.swift in Sources */,
+				6E79509C1EF91643005633F5 /* ProductDetailCell.swift in Sources */,
 				52E3D22E1E7F32FD0064B02E /* ShoeDetailTableViewController.swift in Sources */,
+				6E6D56961EF91D48008289BB /* AuthViewController.swift in Sources */,
 				52E3D2391E7F53EB0064B02E /* SuggestionTableViewCell.swift in Sources */,
 				52F7B6161E7F9F7E00735A46 /* CheckoutTableViewController.swift in Sources */,
 			);
@@ -351,12 +470,13 @@
 		};
 		52E3D2211E7F0D990064B02E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 077C35D0FEDE7E9E1F82A252 /* Pods-ShoppingIO.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = JWZKK84V7N;
 				INFOPLIST_FILE = "Nike+Research/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "co.ductran.Nike-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = ShoppingIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -364,12 +484,13 @@
 		};
 		52E3D2221E7F0D990064B02E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A4E4010EDD1864E252A764C1 /* Pods-ShoppingIO.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = JWZKK84V7N;
 				INFOPLIST_FILE = "Nike+Research/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "co.ductran.Nike-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = ShoppingIO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -378,7 +499,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		52E3D2091E7F0D990064B02E /* Build configuration list for PBXProject "Nike+Research" */ = {
+		52E3D2091E7F0D990064B02E /* Build configuration list for PBXProject "ShoppingIO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52E3D21E1E7F0D990064B02E /* Debug */,
@@ -387,7 +508,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52E3D2201E7F0D990064B02E /* Build configuration list for PBXNativeTarget "Nike+Research" */ = {
+		52E3D2201E7F0D990064B02E /* Build configuration list for PBXNativeTarget "ShoppingIO" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52E3D2211E7F0D990064B02E /* Debug */,

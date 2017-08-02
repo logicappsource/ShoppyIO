@@ -6,7 +6,10 @@
 //  Copyright © 2017 Developers Academy. All rights reserved.
 //
 
+
 import UIKit
+import Firebase
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITabBar.appearance().tintColor = UIColor.black
         UINavigationBar.appearance().tintColor = UIColor.black
         UINavigationBar.appearance().isTranslucent = false
+
+        FirebaseApp.configure()
         
         return true
     }
