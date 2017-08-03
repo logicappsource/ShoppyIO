@@ -1,14 +1,14 @@
 //
-//  AuthViewController.swift
+//  WelcomeVC.swift
 //  ShoppingIO
 //
-//  Created by LogicAppSourceIO on 20/06/2017.
+//  Created by LogicAppSourceIO on 02/08/2017.
 //  Copyright © 2017 LogicappsourceIO. All rights reserved.
 //
 
 import UIKit
 
-class AuthViewController: UIViewController {
+class WelcomeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
