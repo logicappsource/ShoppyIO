@@ -14,6 +14,8 @@ class LoginViewController: UITableViewController
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    private var  mainVC = "main"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,7 +36,8 @@ class LoginViewController: UITableViewController
                 if let error = error {
                     self.alert(title: "Oops!", message: error.localizedDescription, buttonTitle: "OK")
                 } else {
-                    self.dismiss(animated: true, completion: nil)
+                    self.performSegue(withIdentifier: self.mainVC, sender: self)
+                    print("User successfully Authenticated ")
                 }
             })
         }

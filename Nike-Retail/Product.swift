@@ -5,7 +5,6 @@
 //  Created by logicappsource on 5/2/17.
 //  Copyright © 2017 logicappsource All rights reserved.
 //
-
 import UIKit
 import Firebase
 
@@ -42,7 +41,7 @@ class Product
         for i in 1...8 {
             shoe1Images.append(UIImage(named: "s\(i)")!)
         }
-        let shoe1 = Product(uid: "875942-100", name: "NIKE AIR MAX 1 ULTRA 2.0 FLYKNIT", images: shoe1Images, price: 180, description: "LIGHTER THAN EVER! The Nike Air Max 1 Ultra 2.0 Flyknit Men's Shoe updates the iconic original with an ultra-lightweight upper while keeping the plush, time-tested Max Air cushioning.", detail: "LIGHTER THAN EVER! The Nike Air Max 1 Ultra 2.0 Flyknit Men's Shoe updates the iconic original with an ultra-lightweight upper while keeping the plush, time-tested Max Air cushioning.")
+        let shoe1 = Product(uid: "875942-100", name: "NIKE AIR MAX 1 ULTRA 2.0 FLYKNIT", images: shoe1Images, price: 180, description: "LIGHTER THAN EVER! The Nike Air Max 1 Ultra 2.0 Flyknit Men's Shoe updates the iconic original with an ultra-lightweight upper while keeping the plush, time-tested Max Air cushioning.", detail: "LIGHTER THAN EVER! The Nike Air Max 1 Ultra 2.0 Flyknit Men's Shoe updates the iconic original with an ultra-lightweight upper while keeping the plush, time-tested Max Air cushioning.")
         shoes.append(shoe1)
         
         // 2
@@ -75,7 +74,6 @@ class Product
 }
 
 // MARK: - Firebase
-
 extension Product
 {
     var ref: FIRDatabaseReference! {
@@ -106,7 +104,7 @@ extension Product
         
         self.init(uid: uid, name: name, images: nil, price: price, description: description, detail: detail, relatedProductUIDs: relatedProductUIDs)
         self.imageLinks = imgLinks
-        self.featuredImageLink = imgLinks[0]
+        //self.featuredImageLink = imgLinks[0]   -- later implementation 
     }
     
     class func fetchProducts(completion: @escaping ([Product]) -> Void)
@@ -155,7 +153,7 @@ extension Product
         
         self.ref.setValue(toDictionary())
     }
-
+    
     func toDictionary() -> [String : Any]
     {
         guard let uid = self.uid, let name = self.name, let price = price, let description = description, let detail = detail, let relatedProductUIDs = relatedProductUIDs else {
@@ -169,14 +167,11 @@ extension Product
             "description" : description,
             "detail" : detail,
             "relatedProductUIDs" : relatedProductUIDs
+            //            "featuredImageLink" : imageLinks![0]    -- later implementtation
+            
         ]
     }
 }
-
-
-
-
-
 
 
 

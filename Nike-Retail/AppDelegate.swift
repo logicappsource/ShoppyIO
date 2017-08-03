@@ -19,12 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         configureAppearance()
         
-//        let products = Product.fetchProducts()
-//        for product in products {
-//            product.save(completion: { (error) in
-//                
-//            })
-//        }
+        let products = Product.fetchProducts()
+        for product in products {
+            product.save(completion: { (error) in
+                
+            })
+        }
         
         Product.fetchProducts { (products) in
             print(products)
