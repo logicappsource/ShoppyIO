@@ -27,6 +27,7 @@ class AuthProvider {
     
     private static let _instance = AuthProvider()
     
+    
     //Create the Instance with class name -> Object
     static var Instance: AuthProvider {
         return _instance

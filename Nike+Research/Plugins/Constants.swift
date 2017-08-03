@@ -15,7 +15,6 @@ class Constants {
     
     
     //DB Provider
-    
     static let EMAIL = "email"
     static let PASSWORD = "password"
     static let DATA = "data"
