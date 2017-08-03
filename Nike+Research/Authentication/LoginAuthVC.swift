@@ -11,7 +11,13 @@ import Firebase
 import FirebaseAuth
 
 
-class AuthViewController: UIViewController {
+class LoginAuthVC: UIViewController {
+    
+    
+    
+    
+    
+    
     
     @IBOutlet weak var usernameTxtField: UITextField!
     @IBOutlet weak var passwordTxtField: UITextField!
@@ -25,6 +31,15 @@ class AuthViewController: UIViewController {
     @IBAction func signUpUser(_ sender: Any) {
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     override func viewDidLoad() {
