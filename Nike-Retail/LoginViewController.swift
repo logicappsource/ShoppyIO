@@ -36,7 +36,7 @@ class LoginViewController: UITableViewController
                 if let error = error {
                     self.alert(title: "Oops!", message: error.localizedDescription, buttonTitle: "OK")
                 } else {
-                    self.performSegue(withIdentifier: self.mainVC, sender: self)
+                    self.performSegue(withIdentifier: "main", sender: self)
                     print("User successfully Authenticated ")
                 }
             })

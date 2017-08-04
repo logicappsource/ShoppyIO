@@ -126,6 +126,9 @@ extension Product
         })
     }
     
+    
+    
+    
     //  two roles: (1) customers;; (2) admin, store owners
     // (2) admin: upload products, edit products, magnage inventory, manage purchases
     // (1) customers: browse products, make a purchase, see purchase history, cancel a purchase...

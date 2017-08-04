@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
         configureAppearance()
         
+        //Products Localy 
         let products = Product.fetchProducts()
         for product in products {
             product.save(completion: { (error) in
