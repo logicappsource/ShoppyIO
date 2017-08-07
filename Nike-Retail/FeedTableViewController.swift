@@ -49,6 +49,15 @@ class FeedTableViewController: UITableViewController
         Product.fetchProducts { (products)  in
             self.products = products
             self.tableView.reloadData()
+            
+                for product in products {
+                        if let uid = product.uid {
+                            if uid == "384664-113" {
+                                ShoppingCart.add(product: product)
+                    }
+                }
+            }
+            
         }
     }
 
