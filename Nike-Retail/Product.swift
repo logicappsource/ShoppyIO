@@ -22,7 +22,7 @@ class Product
     var featuredImageLink: String?
     
     init(uid: String?, name: String?, images: [UIImage]?, price: Double?, description: String?, detail: String?, relatedProductUIDs : [String]? = ["875942-100", "880843-003", "384664-113", "805144-852"])
-    {
+ {
         self.uid = uid
         self.name = name
         self.images = images
@@ -86,6 +86,50 @@ extension Product
         }
     }
     
+//
+//    convenience init(dictionary: [String: Any])
+//    {
+//        let uid = dictionary["uid"] as? String
+//        let name = dictionary["name"] as? String
+//        let price = dictionary["price"] as? Double
+//        let description = dictionary["description"] as? String
+//        let detail = dictionary["detail"] as? String
+//        let images = dictionary["images"] as? String
+//        let relatedProductUIDs = dictionary["relatedProductsUIDs"] as? [String]
+//
+//        var imgLinks = [String]()
+//        if let imgLinkDict = dictionary["images"] as? [String: Any]
+//        {
+//            for (_ , imgLink) in imgLinkDict {
+//                imgLinks.append(imgLink as! String)
+//            }
+//        }
+//
+//            self.init(uid: uid, name: name, images: nil, price: price, description: description, detail: detail, relatedProductUIDs: relatedProductUIDs)
+//            self.imageLinks = imgLinks
+//            self.featuredImageLink = imgLinks[0]
+//    }
+//
+//
+//
+//    class func fetchProducts(completion: @escaping ([Product]) -> Void )
+//    {
+//        FIRDatabase.database().reference().child("products").observeSingleEvent(of: .value, with: { (snapshot) in
+//            var products = [Product]()
+//
+//            for childSnapshot in snapshot.children {
+//                print(childSnapshot)
+//                if let childSnapshot = childSnapshot as? FIRDataSnapshot, let dictionary = childSnapshot.value as? [String: Any] {
+//                    //TODO: Dicitionary , turn dictionary to local instance of product
+//                    let product = Product(dictionary: dictionary)
+//                    //TODO2: Append the product into products
+//                    products.append(product)
+//                }
+//            }
+//            completion(products)
+//        })
+//    }
+    
     convenience init(dictionary: [String : Any])
     {
         let uid = dictionary["uid"] as? String
@@ -104,8 +148,11 @@ extension Product
         
         self.init(uid: uid, name: name, images: nil, price: price, description: description, detail: detail, relatedProductUIDs: relatedProductUIDs)
         self.imageLinks = imgLinks
-        //self.featuredImageLink = imgLinks[0]   -- later implementation 
+        //self.featuredImageLink = imgLinks[0]   -- later implementation
     }
+    
+    
+    
     
     class func fetchProducts(completion: @escaping ([Product]) -> Void)
     {
@@ -170,7 +217,7 @@ extension Product
             "description" : description,
             "detail" : detail,
             "relatedProductUIDs" : relatedProductUIDs
-            //            "featuredImageLink" : imageLinks![0]    -- later implementtation
+            // "featuredImageLink" : imageLinks![0]    -- later implementtation
             
         ]
     }

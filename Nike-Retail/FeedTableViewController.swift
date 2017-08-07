@@ -39,10 +39,17 @@ class FeedTableViewController: UITableViewController
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
+    // MARK: - Fetching from Firebase
+    
     func fetchProducts()
     {
-        products = Product.fetchProducts()
-        tableView.reloadData()
+        //Modify from to firbase old code
+        //products = Product.fetchProducts()
+        
+        Product.fetchProducts { (products)  in
+            self.products = products
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source

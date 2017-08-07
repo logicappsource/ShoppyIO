@@ -9,6 +9,13 @@
 import UIKit
 
 class FeedProductCell: UITableViewCell {
+    
+    
+    //Caching
+    //Core Data
+    //Realm
+    //SAMCache
+    
 
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var productNameLabel: UILabel!
@@ -23,9 +30,21 @@ class FeedProductCell: UITableViewCell {
     func updateUI()
     {
         if let product = product {
+            //Download the product image
+            productImageView.image = nil
+            if let imageLinks = product.imageLinks, let imageLink = imageLinks.first {
+                FIRImage.downloadImage(uri: imageLink, completion: { (image, error) in
+                    if error == nil {
+                        self.productImageView.image = image
+                        
+                    }
+                })
+            }
+            
+            
             productImageView.image = product.images?.first
             productNameLabel.text = product.name
-            productPriceLabel.text = "\(product.price!)"
+            productPriceLabel.text = "$\(product.price!)"
         }
     }
 
