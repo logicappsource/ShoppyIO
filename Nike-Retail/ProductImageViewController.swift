@@ -10,7 +10,11 @@ import UIKit
 
 class ProductImageViewController: UIViewController
 {
+    
     @IBOutlet weak var imageView: UIImageView!
+    
+    // 1. Download image for ProductImageViewController from an imageLink
+    
     
     var image: UIImage? {
         didSet {
@@ -25,3 +29,5 @@ class ProductImageViewController: UIViewController
     }
 
 }
+
+
