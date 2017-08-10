@@ -38,7 +38,6 @@ class SignupTableViewController: UITableViewController
         // create a new account
         // save the user data, take a photo
         // login the user
-        
         if emailTextField.text != ""
             && (passwordTextField.text?.characters.count)!  > 6
             && (usernameTextField.text?.characters.count)! > 6
@@ -52,6 +51,7 @@ class SignupTableViewController: UITableViewController
             Auth.auth().createUser(withEmail: email, password: password, completion: { (firUser, error) in
                 if error != nil {
                     // report error
+                    print("User not succesful signed up ")
                 } else if let firUser = firUser {
                     let newUser = User(uid: firUser.uid, username: username, profileImage: self.profileImage)
                     newUser.save({ (error) in
@@ -64,7 +64,8 @@ class SignupTableViewController: UITableViewController
                                     // report error
                                     print(error)
                                 } else {
-                                    self.dismiss(animated: true, completion: nil)
+                                    self.alertUser("Success - Please login to Continue", message: "Succes", buttonTitle: "OK")
+                                    self.performSegue(withIdentifier: "directLogin", sender: self)
                                 }
                             })
                         }
@@ -73,6 +74,15 @@ class SignupTableViewController: UITableViewController
             })
         }
     }
+    
+    func alertUser(_ title: String, message: String, buttonTitle: String) {
+        let alertVC = UIAlertController(title: title, message: message,  preferredStyle: .alert)
+        let action = UIAlertAction(title: buttonTitle, style: .default, handler: nil)
+        alertVC.addAction(action)
+        present(alertVC, animated: true, completion: nil)
+        
+    }
+    
     
     @IBAction func backDidTap(_ sender: Any)
     {

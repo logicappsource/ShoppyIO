@@ -17,7 +17,7 @@ class LoginViewController: UITableViewController
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Login to Moments"
+        title = "Login to LogicShoppyIO"
         
         emailTextField.becomeFirstResponder()
         emailTextField.delegate = self
@@ -29,12 +29,13 @@ class LoginViewController: UITableViewController
         if emailTextField.text != "" && (passwordTextField.text?.characters.count)! > 6 {
             let email = emailTextField.text!
             let password = passwordTextField.text!
-            
+            //print("User entered Credentials ")
             Auth.auth().signIn(withEmail: email, password: password, completion: { (firUser, error) in
                 if let error = error {
-                    self.alert("Oops!", message: error.localizedDescription, buttonTitle: "OK")
+                    self.alert("Could not Authenticate user ", message: error.localizedDescription, buttonTitle: "OK")
                 } else {
-                    self.dismiss(animated: true, completion: nil)
+                    print("User succesfully Authenticated")
+                    self.performSegue(withIdentifier: "loginMain", sender: self)
                 }
             })
         }
