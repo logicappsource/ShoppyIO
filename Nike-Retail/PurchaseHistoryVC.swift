@@ -11,6 +11,8 @@ class PurchaseHistoryVC: UIViewController {
     
     let date = NSDate()
     
+    
+    
     /*
      ------------------  Purchase History
      (1) Segue after alert
