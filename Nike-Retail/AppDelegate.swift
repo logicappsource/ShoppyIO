@@ -11,19 +11,17 @@
  
  /************   Bug Fixes  **************/
  /*
- (3)  Implement dynamic product suggestions
+ (1)
+ (2) Popup Modal -- alert on added to cart - showing product + price
+ (3) Buy button  - modaly rediret to checkout if products is added succc
  
  * We have an array of related product UIDs for each product
- * Get these related products from either locally (you already downloaded it) or you have to download it now
- * Populate these images into your UICollectionViewDataSource
- * When the user taps on a related product thumbnial, he/she goes to the related product's detail screen
  * Share your Code Challenge in the comment section
- ==> at least 1hour to 3 hours
  
  (1) Design check out UI in Storyboard using Static Table View Controller
- (2) Connect its UI elements to according IBOutlets
  
- More Neat stuff
+ 
+****************** More Neat stuff **************************
 **** Show order thank you page and confirmation page after the payment is successfully processed.
 **** Save placed order to Firebase for store owner to process the order and users to manage them.
 **** Create purchase history
@@ -34,6 +32,7 @@
 **** LIVE chat with store owner and customer support agents! You'll learn how to do this in Socialize Your Apps' Messenger course.
 **** API For clients dashboard to send out PUSH NOTFICAtiONS
 **** Change Images on firebase with API - fetch directly from FIR or dashboard in the app from web
+**** Building WishList -->
    */
 
 
