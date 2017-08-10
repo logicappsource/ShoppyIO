@@ -84,9 +84,10 @@ class CheckoutTableViewController: UITableViewController
                 
             })
         }
+        
     }
     
-    func postToStripe(token: STPToken) //Send email to user - id - pruchase - timestamp -> products
+    func postToStripe(token: STPToken)
     {
         //URL -> Server
         let url = "http://localhost:3422/stripe-payment/payment.php"  //3422
@@ -106,6 +107,8 @@ class CheckoutTableViewController: UITableViewController
                 let okButton = UIAlertAction(title: "OK", style: .default) { (alertAction) in
                     self.dismiss(animated: true, completion: nil)
                 }
+                //Segue to purchase - history VC
+//                self.performSegue(withIdentifier: "directHistory", sender: self)
                 
                 alertController.addAction(okButton)
                 self.present(alertController, animated: true, completion: nil)
@@ -115,6 +118,55 @@ class CheckoutTableViewController: UITableViewController
                 self.handleError(error: error)
         }
     }
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+extension CheckoutTableViewController {
+    
+//
+//    func stripeCreditCardInformation() {
+//        // 1 - initiate a stripe card
+//        var stripeCard = STPCard()
+//
+//        // 1.2 - get the credit card information from the text fields
+//        if expirationDateTextField.text?.isEmpty == false {
+//            let expirationDate = expirationDateTextField.text?.components(separatedBy: "/")
+//            let expMonth = UInt((expirationDate?[0])!)!
+//            let expYear = UInt((expirationDate?[1])!)!
+//
+//            // 2 - send the card information to stripe to get a token
+//            stripeCard.number = cardNumberTextField.text
+//            stripeCard.cvc = securityTextField.text
+//            stripeCard.expMonth = expMonth
+//            stripeCard.expYear = expYear
+//
+//            // 3 - validate the card numbers
+//            STPAPIClient.shared().createToken(withCard: stripeCard, completion: { (token, error) in
+//                // we have an error or not
+//                if error != nil {
+//                    // handle the error
+//                    self.handleError(error: error!)
+//                    return
+//                } else {
+//                    // we get a token
+//                    // post the token to Stripe using our web server!!!
+//                    self.postToStripe(token: token!)
+//                }
+//
+//            })
+//        }
+//
+//    }
+//
     
     func handleError(error: Error)
     {
@@ -126,14 +178,9 @@ class CheckoutTableViewController: UITableViewController
         alertController.addAction(okButton)
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    
 }
-
-
-
-
-
-
-
 
 
 

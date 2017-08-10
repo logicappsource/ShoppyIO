@@ -8,13 +8,13 @@
 
 
  /************   Bug Fixes  **************/
- /* (1)
+ /*
  (2) Popup Modal -- alert on added to cart - showing product + price
- (3) Buy button  - modaly rediret to checkout if products is added succc
  
  
 ****************** More Neat stuff **************************
 **** Show order thank you page and confirmation page after the payment is successfully processed.
+ 
  
 **** Save placed order to Firebase for store owner to process the order and users to manage them.
 **** Create purchase history
