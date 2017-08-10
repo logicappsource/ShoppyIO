@@ -11,10 +11,12 @@ import UIKit
 protocol BuyButtonCellDelegate: class
 {
     func addToCart(_ product: Product)
+    
 }
 
 class BuyButtonCell: UITableViewCell {
-
+    
+    
     @IBOutlet weak var buyButton: UIButton!
     
     weak var delegate: BuyButtonCellDelegate?
@@ -27,6 +29,7 @@ class BuyButtonCell: UITableViewCell {
     
     @IBAction func buyButtonDidTap()
     {
+           
         delegate?.addToCart(product)
     }
 
@@ -37,14 +40,19 @@ class BuyButtonCell: UITableViewCell {
 
 
 
-
-
-
-
-
-
-
-
+//extension BuyButtonCell: UIAlertViewDelegate {
+//
+//    func alertUser(_ title: String, message: String, buttonTitle: String) {
+//
+//        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//        let action = UIAlertAction(title: buttonTitle, style: .default, handler: nil )
+//        alertVC.addAction(action)
+//        alertVC.present(alertVC, animated: true, completion: nil)
+//    }
+//
+//
+//}
+//
 
 
 

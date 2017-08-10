@@ -86,7 +86,7 @@ class CheckoutTableViewController: UITableViewController
         }
     }
     
-    func postToStripe(token: STPToken)
+    func postToStripe(token: STPToken) //Send email to user - id - pruchase - timestamp -> products
     {
         //URL -> Server
         let url = "http://localhost:3422/stripe-payment/payment.php"  //3422

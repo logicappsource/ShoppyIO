@@ -158,6 +158,11 @@ class ShoppingCart
             // return back the value of the currentData as the new updated cart - so we can upload this to our firebase
             currentData.value = cart
             
+            //Alert user 
+            
+         
+
+            
             return TransactionResult.success(withValue: currentData)
             
         }) { (error, committed, snapshot) in
@@ -168,8 +173,6 @@ class ShoppingCart
         }
     }
 }
-
-
 
 
 

@@ -191,6 +191,8 @@ extension ProductDetailTVC : BuyButtonCellDelegate
 {
     func addToCart(_ product: Product) {
         ShoppingCart.add(product)
+        
+        performSegue(withIdentifier: "directShoppingbag", sender: self)
     }
 }
 
