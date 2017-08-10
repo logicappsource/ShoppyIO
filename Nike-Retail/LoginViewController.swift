@@ -22,6 +22,11 @@ class LoginViewController: UITableViewController
         emailTextField.becomeFirstResponder()
         emailTextField.delegate = self
         passwordTextField.delegate = self
+        
+        #if DEBUG
+            emailTextField.text = "klomanden@gmail.com"
+            passwordTextField.text = "klomanden"
+        #endif
     }
 
     @IBAction func loginDidTap()

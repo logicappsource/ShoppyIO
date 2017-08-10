@@ -8,10 +8,17 @@
 
 import UIKit
 
+extension UIStoryboard {
+    static let main = UIStoryboard(name: "Main", bundle: nil)
+}
+
 class ProductDetailTVC: UITableViewController
 {
     @IBOutlet weak var productImagesHeaderView: ProductImagesHeaderView!
     
+    static let identifier = "ProductDetailVC"
+    
+    let relatedProducts = Product.fetchProducts()
     var product: Product!
     
     struct Storyboard {
@@ -116,11 +123,15 @@ class ProductDetailTVC: UITableViewController
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == Storyboard.showImagesPageVC {
+        switch segue.identifier ?? "" {
+        case Storyboard.showImagesPageVC:
             if let imagesPageVC = segue.destination as? ProductImagesPageViewController {
                 imagesPageVC.product = product
                 imagesPageVC.pageViewControllerDelegate = productImagesHeaderView
             }
+            
+        default:
+            break
         }
     }
 }
@@ -136,16 +147,16 @@ extension ProductDetailTVC : UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return 4
+        return relatedProducts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SuggestionCollectionViewCell", for: indexPath) as! SuggestionCollectionViewCell
         // TODO: - set real data for product suggestions
-        let products = Product.fetchProducts()
-        cell.image = products[indexPath.item].images?.first
         
+        //cell.image = products[indexPath.item].images?.first
+        cell.product = relatedProducts[indexPath.item]
         return cell
     }
 }
@@ -154,7 +165,14 @@ extension ProductDetailTVC : UICollectionViewDataSource
 
 extension ProductDetailTVC : UICollectionViewDelegate
 {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Pressed item")
+        
+        let product = relatedProducts[indexPath.row]
+        let vc = UIStoryboard.main.instantiateViewController(withIdentifier: ProductDetailTVC.identifier) as! ProductDetailTVC
+        vc.product = product
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension ProductDetailTVC : UICollectionViewDelegateFlowLayout
@@ -180,13 +198,6 @@ extension ProductDetailTVC : BuyButtonCellDelegate
         ShoppingCart.add(product)
     }
 }
-
-
-
-
-
-
-
 
 
 

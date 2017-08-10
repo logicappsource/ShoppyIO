@@ -54,6 +54,7 @@ class ProductImagesPageViewController: UIPageViewController
     
     func turnToPage(_ index: Int)
     {
+        guard controllers.count > index else { return }
         let controller = controllers[index]
         var direction = UIPageViewControllerNavigationDirection.forward
         

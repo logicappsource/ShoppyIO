@@ -119,12 +119,33 @@ extension ShoppingBagTableViewController
             return cell
         }
     }
+    
+    
+  override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCellEditingStyle.delete) {
+            
+            //removecellat indexpath
+            //tablreviewendupadte 
+            
+            // handle delete ( removing the data from your array and updating the tableview)
+            
+            //Shopping cart - update price ->  Product - Total
+            
+            //Remove the product from the cell
+            
+            // Refresh the table view cell
+            self.tableView.reloadData()
+            print("delete tableview cell")
+        }
+    }
+    
+    
+    
 }
-
-
-
-
-
 
 
 
