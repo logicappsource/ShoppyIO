@@ -13,7 +13,7 @@ typealias ImagePickerHelperCompletion = ((UIImage?) -> Void)!
 
 class ImagePickerHelper: NSObject
 {
-    // actionsheet, imagePickerController ==> viewController
+    // actionsheet, imagePickerController => viewController
     weak var viewController: UIViewController!
     var completion: ImagePickerHelperCompletion
     

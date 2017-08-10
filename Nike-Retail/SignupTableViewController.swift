@@ -64,8 +64,8 @@ class SignupTableViewController: UITableViewController
                                     // report error
                                     print(error)
                                 } else {
-                                    self.alertUser("Success - Please login to Continue", message: "Succes", buttonTitle: "OK")
-                                    self.performSegue(withIdentifier: "directLogin", sender: self)
+                                    //self.alertUser("Success - Please login to Continue", message: "Succes", buttonTitle: "OK")
+                                    //self.performSegue(withIdentifier: "directLogin", sender: self)
                                 }
                             })
                         }

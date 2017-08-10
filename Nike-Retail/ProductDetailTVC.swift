@@ -33,6 +33,8 @@ class ProductDetailTVC: UITableViewController
 
     // MARK: - UITableViewDataSource
     
+    
+    
     // indexPath.row
     // 0 - productDetailCell
     // 1 - buyButtonCell
@@ -80,6 +82,9 @@ class ProductDetailTVC: UITableViewController
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.suggestionCell, for: indexPath) as! SuggestionTableViewCell
             
             // TODO: - set product suggestions data here.
+            
+//            let products = Product.fetchProducts()
+//            cell.collectionView = products[indexPath.row].images?.first
             
             return cell
         }

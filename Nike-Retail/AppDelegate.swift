@@ -6,14 +6,12 @@
 //  Copyright © 2017 LogicAppSourceIO All rights reserved.
 //
 
-/* Missing  Implementation --> Completion */
+/* Missing  Implementation  */
  
  
  /************   Bug Fixes  **************/
  /*
- (1) Login + Signup
- (2) Download image for ProductImageViewController from an imageLink  ===> at least 15 minutes
- (3)Implement dynamic product suggestions
+ (3)  Implement dynamic product suggestions
  
  * We have an array of related product UIDs for each product
  * Get these related products from either locally (you already downloaded it) or you have to download it now

@@ -14,7 +14,7 @@ class ProductImageViewController: UIViewController
     
     var imageLink: String? {
         didSet {
-            if let imageLink = imageLink {
+            if let imageLink = imageLink { //Download image from imagelink 
                 FIRImage.downloadImage(uri: imageLink, completion: { (image, error) in
                     if error == nil && image != nil {
                         self.imageView?.image = image
