@@ -2,14 +2,14 @@
 //  FirebaseReference.swift
 //  LogicShoppyIO
 //
-//  Created by logicappsourceon 4/17/17.
-//  Copyright © 2017 logicappsource. All rights reserved.
+//  Created by LogicAppSourceIO on 4/17/17.
+//  Copyright © 2017 LogicAppSourceIO. All rights reserved.
 //
 
 import Foundation
 import Firebase
 
-enum DatabaseReference
+enum DTDatabaseReference
 {
     case root
     case users(uid: String)
@@ -17,7 +17,7 @@ enum DatabaseReference
     
     // MARK: - Public
     
-    func reference() -> FIRDatabaseReference {
+    func reference() -> DatabaseReference {
         switch self {
         case .root:
             return rootRef
@@ -26,11 +26,11 @@ enum DatabaseReference
         }
     }
     
-    private var rootRef: FIRDatabaseReference {
-        return FIRDatabase.database().reference()
+    fileprivate var rootRef: DatabaseReference {
+        return Database.database().reference()
     }
     
-    private var path: String {
+    fileprivate var path: String {
         switch self {
         case .root:
             return ""
@@ -45,18 +45,18 @@ enum DatabaseReference
 enum StorageReference
 {
     case root
-    case profileImages  // for user's profile image
+    case profileImages  //  user's profile image
     case images // general images in app
     
-    func reference() -> FIRStorageReference {
+    func reference() -> FirebaseStorage.StorageReference {
         return baseRef.child(path)
     }
     
-    private var baseRef: FIRStorageReference {
-        return FIRStorage.storage().reference()
+    fileprivate var baseRef: FirebaseStorage.StorageReference {
+        return Storage.storage().reference()
     }
     
-    private var path: String {
+    fileprivate var path: String {
         switch self {
         case .root:
             return ""

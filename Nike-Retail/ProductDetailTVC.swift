@@ -2,8 +2,8 @@
 //  ProductDetailTVC.swift
 //  LogicShoppyIO
 //
-//  Created by logicappsourceon 5/2/17.
-//  Copyright © 2017 logicappsource. All rights reserved.
+//  Created by LogicAppSourceIO on 2/12/17.
+//  Copyright © 2017 LogicAppSourceIO.. All rights reserved.
 //
 
 import UIKit
@@ -11,6 +11,7 @@ import UIKit
 class ProductDetailTVC: UITableViewController
 {
     @IBOutlet weak var productImagesHeaderView: ProductImagesHeaderView!
+    
     var product: Product!
     
     struct Storyboard {
@@ -63,6 +64,7 @@ class ProductDetailTVC: UITableViewController
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.buyButtonCell, for: indexPath) as! BuyButtonCell
             cell.product = product
             cell.selectionStyle = .none
+            cell.delegate = self
             
             return cell
             
@@ -111,7 +113,7 @@ class ProductDetailTVC: UITableViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Storyboard.showImagesPageVC {
             if let imagesPageVC = segue.destination as? ProductImagesPageViewController {
-                imagesPageVC.images = product.images
+                imagesPageVC.product = product
                 imagesPageVC.pageViewControllerDelegate = productImagesHeaderView
             }
         }
@@ -165,6 +167,14 @@ extension ProductDetailTVC : UICollectionViewDelegateFlowLayout
     }
 }
 
+// MARK: - BuyButtonCellDelegate
+
+extension ProductDetailTVC : BuyButtonCellDelegate
+{
+    func addToCart(_ product: Product) {
+        ShoppingCart.add(product)
+    }
+}
 
 
 

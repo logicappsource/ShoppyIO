@@ -2,8 +2,8 @@
 //  FIRImage.swift
 //  LogicShoppyIO
 //
-//  Created by logicappsource on 4/17/17.
-//  Copyright © 2017 logicappsource. All rights reserved.
+//  Created by LogicAppSourceIO on 6/17/17.
+//  Copyright © 2017 LogicAppSourceIO. All rights reserved.
 //
 
 import UIKit
@@ -13,7 +13,7 @@ class FIRImage
 {
     var image: UIImage
     var downloadURI: String?
-    var ref: FIRStorageReference!
+    var ref: FirebaseStorage.StorageReference!
     
     init(image: UIImage) {
         self.image = image
@@ -30,7 +30,7 @@ extension FIRImage
         ref = StorageReference.profileImages.reference().child(userUID)
         downloadURI = ref.description
         
-        ref.put(imageData!, metadata: nil) { (metaData, error) in
+        ref.putData(imageData!, metadata: nil) { (metaData, error) in
             completion(error)
         }
     }
@@ -43,7 +43,7 @@ extension FIRImage
         ref = StorageReference.images.reference().child(uid)
         downloadURI = ref.description
         
-        ref.put(imageData!, metadata: nil) { (metaData, error) in
+        ref.putData(imageData!, metadata: nil) { (metaData, error) in
             completion(error)
         }
     }
@@ -54,7 +54,7 @@ extension FIRImage
 {
     class func downloadProfileImage(_ uid: String, completion: @escaping (UIImage?, Error?) -> Void)
     {
-        StorageReference.profileImages.reference().child(uid).data(withMaxSize: 1 * 1024 * 1024) { (imageData, error) in
+        StorageReference.profileImages.reference().child(uid).getData(maxSize: 1 * 1024 * 1024) { (imageData, error) in
             if error == nil && imageData != nil {
                 let image = UIImage(data: imageData!)
                 completion(image, error)
@@ -67,7 +67,7 @@ extension FIRImage
     
     class func downloadImage(uri: String, completion: @escaping (UIImage?, Error?) -> Void)
     {
-        FIRStorage.storage().reference(forURL: uri).data(withMaxSize: 1 * 1024 * 1024) { (imageData, error) in
+        Storage.storage().reference(forURL: uri).getData(maxSize: 1 * 1024 * 1024) { (imageData, error) in
             if error == nil && imageData != nil {
                 let image = UIImage(data: imageData!)
                 completion(image, error)
@@ -79,7 +79,7 @@ extension FIRImage
     
     class func downloadImage(uid: String, completion: @escaping (UIImage?, Error?) -> Void)
     {
-        StorageReference.images.reference().child(uid).data(withMaxSize: 1 * 1024 * 1024) { (imageData, error) in
+        StorageReference.images.reference().child(uid).getData(maxSize: 1 * 1024 * 1024) { (imageData, error) in
             if error == nil && imageData != nil {
                 let image = UIImage(data: imageData!)
                 completion(image, error)

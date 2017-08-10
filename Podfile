@@ -11,5 +11,10 @@ target 'Nike-Retail' do
     pod 'Firebase/Database'
     pod 'Firebase/Storage'
 
+    # Stripe
+    pod 'Stripe'
+
+    # Networking
+    pod 'AFNetworking'
 
 end

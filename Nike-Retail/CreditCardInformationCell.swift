@@ -1,8 +1,8 @@
 //
 //  CreditCardInformationCell.swift
-//  LOgicShoppyIO
+//  LogicShoppyIO
 //
-//  Created by LogicAppSourceIO on 3/30/17.
+//  Created by LogicAppSource on 3/30/17.
 //  Copyright © 2017 LogicAppSourceIO. All rights reserved.
 //
 

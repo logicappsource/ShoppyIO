@@ -1,9 +1,9 @@
 //
 //  FeedTableViewController.swift
-//  LogicShoppyIO
+//  LogicShoppyIO 
 //
-//  Created by logicappsource on 5/2/17.
-//  Copyright © 2017 logicappsource. All rights reserved.
+//  Created by LogicAppSourceIO on 15/3/17.
+//  Copyright © 2017 LogicAppSourceIO.. All rights reserved.
 //
 
 import UIKit
@@ -22,7 +22,7 @@ class FeedTableViewController: UITableViewController
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if FIRAuth.auth()?.currentUser == nil {
+        if Auth.auth().currentUser == nil {
             self.performSegue(withIdentifier: Storyboard.showWelcome, sender: nil)
         } else {
             // start doing something with your user here.
@@ -43,21 +43,9 @@ class FeedTableViewController: UITableViewController
     
     func fetchProducts()
     {
-        //Modify from to firbase old code
-        //products = Product.fetchProducts()
-        
-        Product.fetchProducts { (products)  in
+        Product.fetchProducts { (products) in
             self.products = products
             self.tableView.reloadData()
-            
-                for product in products {
-                        if let uid = product.uid {
-                            if uid == "384664-113" {
-                                ShoppingCart.add(product: product)
-                    }
-                }
-            }
-            
         }
     }
 
@@ -91,7 +79,7 @@ class FeedTableViewController: UITableViewController
     
     // MARK: - UITableViewDelegate
     
-    private var selectedProduct: Product?
+    fileprivate var selectedProduct: Product?
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {

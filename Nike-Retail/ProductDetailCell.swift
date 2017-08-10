@@ -2,8 +2,8 @@
 //  ProductDetailCell.swift
 //  LogicShoppyIO
 //
-//  Created by logicappsource on 5/2/17.
-//  Copyright © 2017 logicappsource. All rights reserved.
+//  Created by LogicAppSourceIO. on 5/2/17.
+//  Copyright © 2017 LogicAppSourceIO. All rights reserved.
 //
 
 import UIKit

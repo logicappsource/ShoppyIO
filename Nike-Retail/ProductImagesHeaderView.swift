@@ -1,9 +1,9 @@
 //
 //  ShoeImagesHeaderViewController.swift
-//  LogicShoppyIO 
+//  LogicShoppyIO
 //
-//  Created by logicappsource on 3/25/17.
-//  Copyright © 2017 Developers Academy. All rights reserved.
+//  Created by LogicAppSourceIO. on 3/25/17.
+//  Copyright © 2017 LogicAppSourceIO.. All rights reserved.
 //
 
 import UIKit
@@ -15,7 +15,7 @@ class ProductImagesHeaderView: UIView
 
 extension ProductImagesHeaderView : ProductImagesPageViewControllerDelegate
 {
-    func setupPageController(numberOfPages: Int)
+    func setupPageController(_ numberOfPages: Int)
     {
         pageControl.numberOfPages = numberOfPages
     }

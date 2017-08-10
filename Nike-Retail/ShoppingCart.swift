@@ -2,8 +2,8 @@
 //  ShoppingCart.swift
 //  LogicShoppyIO
 //
-//  Created by LogicAppSourceIO on 07/08/2017.
-//  Copyright © 2017 logicappsource. All rights reserved.
+//  Created by LogicAppSourceIO on 7/1/17.
+//  Copyright © 2017 LogicAppSourceIO. All rights reserved.
 //
 
 import Foundation
@@ -21,12 +21,52 @@ class ShoppingCart
     var tax: Double?
     var total: Double?
     
-    class func add(product: Product)
+    // 16-Challenge-3: Create the fetch products method
+    
+    func fetch(_ completion: @escaping() -> Void)
     {
-        let userUID = FIRAuth.auth()!.currentUser!.uid
-        let ref = DatabaseReference.users(uid: userUID).reference().child("shoppingCart")
+        let userUID = Auth.auth().currentUser!.uid
+        let ref = DTDatabaseReference.users(uid: userUID).reference().child("shoppingCart")
+        ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
+            
+            if let cart = currentData.value as? [String : Any],
+                let shipping = cart["shipping"] as? Double,
+                let subtotal = cart["subtotal"] as? Double,
+                let tax = cart["tax"] as? Double,
+                let total = cart["total"] as? Double,
+                let productsDictionary = cart["products"] as? [String : Any] {
+                self.shipping = shipping
+                self.subtotal = subtotal
+                self.total = total
+                self.tax = tax
+                
+                self.products = [Product]()
+                for (_, productDict) in productsDictionary {
+                    if let productDict = productDict as? [String : Any] {
+                        let product = Product(dictionary: productDict)
+                        self.products?.append(product)
+                    }
+                }
+                
+                completion()
+            }
+            
+            return TransactionResult.success(withValue: currentData)
+            
+        }) { (error, committed, snapshot) in
+            if let error = error {
+                // TODO: report error here
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    class func add(_ product: Product)
+    {
+        let userUID = Auth.auth().currentUser!.uid
+        let ref = DTDatabaseReference.users(uid: userUID).reference().child("shoppingCart")
         
-        ref.runTransactionBlock({ (currentData: FIRMutableData) -> FIRTransactionResult in
+        ref.runTransactionBlock({ (currentData: MutableData) -> TransactionResult in
             
             // the last-known state of the current shopping cart, nil if there's none shopping cart
             
@@ -69,14 +109,25 @@ class ShoppingCart
             // return back the value of the currentData as the new updated cart - so we can upload this to our firebase
             currentData.value = cart
             
-            return FIRTransactionResult.success(withValue: currentData)
+            return TransactionResult.success(withValue: currentData)
             
         }) { (error, committed, snapshot) in
             if let error = error {
                 // Code Challenge: report the error to the user -- alert view
                 print(error.localizedDescription)
-                print("Eror not sent data to FIREBASE ")
             }
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,9 +1,9 @@
 //
 //  SuggestionCollectionViewCell.swift
-//  logicShoppyIO
+//  LogicShoppyIO
 //
-//  Created by Duc Tran on 5/4/17.
-//  Copyright © 2017 Developers Academy. All rights reserved.
+//  Created by LogicAppSourceIO. on 5/4/17.
+//  Copyright © 2017 LogicAppSourceIO.. All rights reserved.
 //
 
 import UIKit

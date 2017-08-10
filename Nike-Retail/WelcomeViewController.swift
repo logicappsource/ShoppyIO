@@ -1,9 +1,9 @@
 //
 //  WelcomeViewController.swift
-// LogicShoppyIO
+//  LogicShoppyIO
 //
-//  Created by logicappsource on 11/3/16.
-//  Copyright © 2017 logicappsource All rights reserved.
+//  Created by LogicAppSourceIO on 11/8/17.
+//  Copyright © 2016 LogicAppSourceIO. All rights reserved.
 //
 
 import UIKit
@@ -14,7 +14,7 @@ class WelcomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        FIRAuth.auth()?.addStateDidChangeListener({ (auth, user) in
+        Auth.auth().addStateDidChangeListener({ (auth, user) in
             if let _ = user {
                 self.dismiss(animated: false, completion: nil)
             } else {

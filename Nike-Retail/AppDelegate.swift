@@ -1,13 +1,44 @@
 //
 //  AppDelegate.swift
-//  LogishoppingIO
+//  logicShoppyIO
 //
 //  Created by logicappsource on 4/29/17.
-//  Copyright © 2017 logicappsource. All rights reserved.
+//  Copyright © 2017 LogicAppSourceIO All rights reserved.
 //
+
+/* Missing  Implementation --> Completion */
+ 
+ 
+ /************Bug Fixes --> Login -> Signup **************/
+ /*
+ (1) Download image for ProductImageViewController from an imageLink  ===> at least 15 minutes
+ 
+ (2) Implement dynamic product suggestions
+ * We have an array of related product UIDs for each product
+ * Get these related products from either locally (you already downloaded it) or you have to download it now
+ * Populate these images into your UICollectionViewDataSource
+ * When the user taps on a related product thumbnial, he/she goes to the related product's detail screen
+ * Share your Code Challenge in the comment section
+ ==> at least 1hour to 3 hours
+ 
+ (1) Design check out UI in Storyboard using Static Table View Controller
+ (2) Connect its UI elements to according IBOutlets
+ 
+ 
+**** Show order thank you page and confirmation page after the payment is successfully processed.
+**** Save placed order to Firebase for store owner to process the order and users to manage them.
+**** Create purchase history
+**** Allow store owner to control inventory. This can be done within the app or you can have a separate client app that is for store owner only.
+**** Add, edit products to the store.
+**** Publish posts on the store feed.
+**** Allow store owner to send mass push notification to users.
+**** LIVE chat with store owner and customer support agents! You'll learn how to do this in Socialize Your Apps' Messenger course.
+  */
+
 
 import UIKit
 import Firebase
+import Stripe
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,26 +47,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        FIRApp.configure()
+        FirebaseApp.configure()
         configureAppearance()
+        configureStripe()
         
-        //Products Localy 
-//        let products = Product.fetchProducts()
-//        for product in products {
-//            product.save(completion: { (error) in
-//
-//            })
-//        }
-        
-//        Product.fetchProducts { (products) in
-//            print(products)
-//        }
-        
-        
-        
-        
-        
+//        testUploadProducts()
+
         return true
+    }
+    
+    func configureStripe()
+    {
+        Stripe.setDefaultPublishableKey("pk_test_ecZTLtEOipOUqhftHrG8uEyf")
+    }
+    
+    func testUploadProducts()
+    {
+        for product in Product.fetchProducts() {
+            product.save({ (error) in
+                print(error)
+            })
+        }
     }
     
     func configureAppearance()
@@ -53,23 +85,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 

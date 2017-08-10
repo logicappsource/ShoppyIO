@@ -1,6 +1,6 @@
 //
 //  ShoppingCartItemCell.swift
-//  LogicShoppyIO
+//  logicShoppyIO
 //
 //  Created by LogicAppSourceIO on 5/4/17.
 //  Copyright © 2017 LogicAppSourceIO. All rights reserved.
@@ -23,7 +23,14 @@ class ShoppingCartItemCell: UITableViewCell
     
     func updateUI()
     {
-        productImageView.image = product.images?.first
+        // 16-Challenge-5: Fetch the product featured image
+        productImageView.image = nil
+        if let imageLink = product.featuredImageLink {
+            FIRImage.downloadImage(uri: imageLink, completion: { (image, error) in
+                self.productImageView.image = image
+            })
+        }
+        
         productNameLabel.text = product.name
         priceLabel.text = "$\(product.price!)"
     }

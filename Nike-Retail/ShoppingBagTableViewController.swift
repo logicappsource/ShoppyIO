@@ -1,8 +1,8 @@
 //
 //  ShoppingBagTableViewController.swift
-//  logicshoppyIO
+//  LogicShoppyIO
 //
-//  Created by LogicAppSourceIO on 5/4/17.
+//  Created by LogicAppSourceIO on 7/4/17.
 //  Copyright © 2017 LogicAppSourceIO. All rights reserved.
 //
 
@@ -12,12 +12,17 @@ class ShoppingBagTableViewController: UITableViewController
 {
     var products: [Product]?
     
+    // 16-Challenge-1: We have an instance of shopping cart here so we can fetch new products and pass it to the check out page
+    // 16-Challenge-2: create the ShoppingCart.fetch(_) method in ShoppingCart
+    var shoppingCart = ShoppingCart()
+    
     struct Storyboard {
         static let numberOfItemsCell = "numberOfItemsCell"
         static let itemCell = "itemCell"
         static let cartDetailCell = "cartDetailCell"
         static let totalCell = "totalCell"
         static let checkoutButtonCell = "checkoutButtonCell"
+        static let showCheckout = "ShowCheckout"
     }
     
     override func viewDidLoad() {
@@ -25,14 +30,32 @@ class ShoppingBagTableViewController: UITableViewController
         
         tableView.estimatedRowHeight = 70.0
         tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    // 16-Challenge-4: Fetch Products in viewWillAppear and fetchProducts()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         fetchProducts()
     }
     
     func fetchProducts()
     {
-        products = Product.fetchProducts()
-        tableView.reloadData()
+        self.products?.removeAll()
+        shoppingCart.fetch { [weak self] () in
+            self?.products = self?.shoppingCart.products
+            self?.tableView.reloadData()
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == Storyboard.showCheckout {
+            let checkoutTVC = segue.destination as! CheckoutTableViewController
+            checkoutTVC.shoppingCart = shoppingCart
+        }
     }
 }
 
@@ -65,17 +88,20 @@ extension ShoppingBagTableViewController
             return cell
             
         } else if indexPath.row == products.count + 1 {
-            // cart detail cell
-            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cartDetailCell, for: indexPath)
+            // cart detail cell -- 
+            // 16-Challenge-8: assign the sub total cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.cartDetailCell, for: indexPath) as! CartSubtotalCell
             
-            // TODO: - update the cart's info
+            cell.shoppingCart = shoppingCart
             
             return cell
             
         } else if indexPath.row == products.count + 2 {
             // cart total cell
-            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.totalCell, for: indexPath)
+            // 16-Challenge-9: assign the total cell
+            let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.totalCell, for: indexPath) as! CartTotalCell
             
+            cell.shoppingCart = shoppingCart
             
             return cell
             

@@ -1,9 +1,9 @@
 //
 //  ImagePickerHelper.swift
-//  LogicShoppyIO
+//  LogicShoppyIO 
 //
-//  Created by logicappsource on 11/3/16.
-//  Copyright © 2017 logicappsource All rights reserved.
+//  Created by LogicAppSourceIO on 21/3/16.
+//  Copyright © 2016 LogicAppSourceIO. All rights reserved.
 //
 
 import UIKit
@@ -30,10 +30,10 @@ class ImagePickerHelper: NSObject
     {
         let actionSheet = UIAlertController(title: "Pick New Photo", message: "Would you like to open photos library or camera", preferredStyle: .actionSheet)
         let cameraAction = UIAlertAction(title: "Camera", style: .default, handler: { action in
-            self.showImagePicker(sourceType: .camera)
+            self.showImagePicker(.camera)
         })
         let photosLibraryAction = UIAlertAction(title: "Photo Library", style: .default, handler: { action in
-            self.showImagePicker(sourceType: .photoLibrary)
+            self.showImagePicker(.photoLibrary)
         })
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         
@@ -44,7 +44,7 @@ class ImagePickerHelper: NSObject
         viewController.present(actionSheet, animated: true, completion: nil)
     }
     
-    func showImagePicker(sourceType: UIImagePickerControllerSourceType)
+    func showImagePicker(_ sourceType: UIImagePickerControllerSourceType)
     {
         let imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true

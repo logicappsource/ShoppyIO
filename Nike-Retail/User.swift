@@ -2,8 +2,8 @@
 //  User.swift
 //  LogicShoppyIO
 //
-//  Created by logicappsource on 4/17/17.
-//  Copyright © 2017 logicappsource All rights reserved.
+//  Created by LogicAppSourceIO on 14/7/17.
+//  Copyright © 2017 LogicAppSourceIO. All rights reserved.
 //
 
 import Foundation
@@ -30,10 +30,10 @@ class User
         username = dictionary["username"] as! String
     }
     
-    func save(completion: @escaping (Error?) -> Void)
+    func save(_ completion: @escaping (Error?) -> Void)
     {
-        // 1
-        let ref = DatabaseReference.users(uid: uid).reference()
+        // 1 build the reference to child -> users 
+        let ref = DTDatabaseReference.users(uid: uid).reference()
         ref.setValue(toDictionary())
         
         // 4 - save the profile image

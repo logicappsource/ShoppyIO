@@ -2,9 +2,10 @@
 //  Product.swift
 //  LogicShoppyIO
 //
-//  Created by logicappsource on 5/2/17.
-//  Copyright © 2017 logicappsource All rights reserved.
+//  Created by LogicAppSourceIO on 15/7/17.
+//  Copyright © 2017 LogicAppSourceIO. All rights reserved.
 //
+
 import UIKit
 import Firebase
 
@@ -22,7 +23,7 @@ class Product
     var featuredImageLink: String?
     
     init(uid: String?, name: String?, images: [UIImage]?, price: Double?, description: String?, detail: String?, relatedProductUIDs : [String]? = ["875942-100", "880843-003", "384664-113", "805144-852"])
- {
+    {
         self.uid = uid
         self.name = name
         self.images = images
@@ -41,7 +42,7 @@ class Product
         for i in 1...8 {
             shoe1Images.append(UIImage(named: "s\(i)")!)
         }
-        let shoe1 = Product(uid: "875942-100", name: "BitCoin ", images: shoe1Images, price: 3348, description: "LIGHTER THAN EVER! The Nike Air Max 1 Ultra 2.0 Flyknit Men's Shoe updates the iconic original with an ultra-lightweight upper while keeping the plush, time-tested Max Air cushioning.", detail: "LIGHTER THAN EVER! The Nike Air Max 1 Ultra 2.0 Flyknit Men's Shoe updates the iconic original with an ultra-lightweight upper while keeping the plush, time-tested Max Air cushioning.")
+        let shoe1 = Product(uid: "875942-100", name: "NIKE AIR MAX 1 ULTRA 2.0 FLYKNIT", images: shoe1Images, price: 180, description: "LIGHTER THAN EVER! The Nike Air Max 1 Ultra 2.0 Flyknit Men's Shoe updates the iconic original with an ultra-lightweight upper while keeping the plush, time-tested Max Air cushioning.", detail: "LIGHTER THAN EVER! The Nike Air Max 1 Ultra 2.0 Flyknit Men's Shoe updates the iconic original with an ultra-lightweight upper while keeping the plush, time-tested Max Air cushioning.")
         shoes.append(shoe1)
         
         // 2
@@ -49,7 +50,7 @@ class Product
         for i in 1...7 {
             shoe2Images.append(UIImage(named: "t\(i)")!)
         }
-        let shoe2 = Product(uid: "880843-003", name: "Ethereum", images: shoe2Images, price: 268, description: "The Nike Free RN Flyknit 2017 Men's Running Shoe brings you miles of comfort with an exceptionally flexible outsole for the ultimate natural ride. Flyknit fabric wraps your foot for a snug, supportive fit while a tri-star outsole expands and flexes to let your foot move naturally.", detail: "The Nike Free RN Flyknit 2017 Men's Running Shoe brings you miles of comfort with an exceptionally flexible outsole for the ultimate natural ride. Flyknit fabric wraps your foot for a snug, supportive fit while a tri-star outsole expands and flexes to let your foot move naturally.")
+        let shoe2 = Product(uid: "880843-003", name: "NIKE FREE RN FLYKNIT 2017", images: shoe2Images, price: 120, description: "The Nike Free RN Flyknit 2017 Men's Running Shoe brings you miles of comfort with an exceptionally flexible outsole for the ultimate natural ride. Flyknit fabric wraps your foot for a snug, supportive fit while a tri-star outsole expands and flexes to let your foot move naturally.", detail: "The Nike Free RN Flyknit 2017 Men's Running Shoe brings you miles of comfort with an exceptionally flexible outsole for the ultimate natural ride. Flyknit fabric wraps your foot for a snug, supportive fit while a tri-star outsole expands and flexes to let your foot move naturally.")
         shoes.append(shoe2)
         
         
@@ -74,61 +75,18 @@ class Product
 }
 
 // MARK: - Firebase
+
 extension Product
 {
-    var ref: FIRDatabaseReference! {
+    var ref: DatabaseReference! {
         get {
             if let uid = self.uid {
-                return DatabaseReference.products(uid: uid).reference()
+                return DTDatabaseReference.products(uid: uid).reference()
             } else {
                 return nil
             }
         }
     }
-    
-//
-//    convenience init(dictionary: [String: Any])
-//    {
-//        let uid = dictionary["uid"] as? String
-//        let name = dictionary["name"] as? String
-//        let price = dictionary["price"] as? Double
-//        let description = dictionary["description"] as? String
-//        let detail = dictionary["detail"] as? String
-//        let images = dictionary["images"] as? String
-//        let relatedProductUIDs = dictionary["relatedProductsUIDs"] as? [String]
-//
-//        var imgLinks = [String]()
-//        if let imgLinkDict = dictionary["images"] as? [String: Any]
-//        {
-//            for (_ , imgLink) in imgLinkDict {
-//                imgLinks.append(imgLink as! String)
-//            }
-//        }
-//
-//            self.init(uid: uid, name: name, images: nil, price: price, description: description, detail: detail, relatedProductUIDs: relatedProductUIDs)
-//            self.imageLinks = imgLinks
-//            self.featuredImageLink = imgLinks[0]
-//    }
-//
-//
-//
-//    class func fetchProducts(completion: @escaping ([Product]) -> Void )
-//    {
-//        FIRDatabase.database().reference().child("products").observeSingleEvent(of: .value, with: { (snapshot) in
-//            var products = [Product]()
-//
-//            for childSnapshot in snapshot.children {
-//                print(childSnapshot)
-//                if let childSnapshot = childSnapshot as? FIRDataSnapshot, let dictionary = childSnapshot.value as? [String: Any] {
-//                    //TODO: Dicitionary , turn dictionary to local instance of product
-//                    let product = Product(dictionary: dictionary)
-//                    //TODO2: Append the product into products
-//                    products.append(product)
-//                }
-//            }
-//            completion(products)
-//        })
-//    }
     
     convenience init(dictionary: [String : Any])
     {
@@ -148,20 +106,17 @@ extension Product
         
         self.init(uid: uid, name: name, images: nil, price: price, description: description, detail: detail, relatedProductUIDs: relatedProductUIDs)
         self.imageLinks = imgLinks
-        //self.featuredImageLink = imgLinks[0]   -- later implementation
+        self.featuredImageLink = dictionary["featuredImageLink"] as? String
     }
     
-    
-    
-    
-    class func fetchProducts(completion: @escaping ([Product]) -> Void)
+    class func fetchProducts(_ completion: @escaping ([Product]) -> Void)
     {
-        FIRDatabase.database().reference().child("products").observeSingleEvent(of: .value, with: { snapshot in
+        Database.database().reference().child("products").observeSingleEvent(of: .value, with: { snapshot in
             
             var products = [Product]()
             
             for childSnapshot in snapshot.children {
-                if let childSnapshot = childSnapshot as? FIRDataSnapshot, let dictionary = childSnapshot.value as? [String : Any] {
+                if let childSnapshot = childSnapshot as? DataSnapshot, let dictionary = childSnapshot.value as? [String : Any] {
                     // TODO: dictionary, need to turn the dictionary into a local instance of PRoduct
                     let product = Product(dictionary: dictionary)
                     // TODO 2: append the product into products
@@ -173,9 +128,6 @@ extension Product
         })
     }
     
-    
-    
-    
     //  two roles: (1) customers;; (2) admin, store owners
     // (2) admin: upload products, edit products, magnage inventory, manage purchases
     // (1) customers: browse products, make a purchase, see purchase history, cancel a purchase...
@@ -186,7 +138,7 @@ extension Product
     
     // 1. create a new product in our app
     
-    func save(completion: @escaping (Error?) -> Void)
+    func save(_ completion: @escaping (Error?) -> Void)
     {
         // save images to FB stroage with the productUID
         if let images = images {
@@ -196,14 +148,15 @@ extension Product
                 firImage.save(randomID, completion: { (error) in
                     // save the image downloadURI to product database
                     self.ref.child("images").childByAutoId().setValue(firImage.downloadURI!)
+                    
                     completion(error)
                 })
             }
         }
         
-        self.ref.setValue(toDictionary())
+        self.ref.setValue(self.toDictionary())
     }
-    
+
     func toDictionary() -> [String : Any]
     {
         guard let uid = self.uid, let name = self.name, let price = price, let description = description, let detail = detail, let relatedProductUIDs = relatedProductUIDs else {
@@ -216,12 +169,16 @@ extension Product
             "price" : price,
             "description" : description,
             "detail" : detail,
-            "relatedProductUIDs" : relatedProductUIDs
-            // "featuredImageLink" : imageLinks![0]    -- later implementtation
-            
+            "relatedProductUIDs" : relatedProductUIDs,
+            "featuredImageLink" : imageLinks?.first
         ]
     }
 }
+
+
+
+
+
 
 
 

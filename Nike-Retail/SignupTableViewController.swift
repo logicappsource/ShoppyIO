@@ -2,8 +2,8 @@
 //  SignupTableViewController.swift
 //  LogicShoppyIO
 //
-//  Created by logicappsource on 11/3/16.
-//  Copyright © 2017 logicappsource. All rights reserved.
+//  Created by LogicAppSourceIO. on 21/7/16.
+//  Copyright © 2016 LogicAppSourceIO.. All rights reserved.
 //
 
 import UIKit
@@ -49,17 +49,17 @@ class SignupTableViewController: UITableViewController
             let email = emailTextField.text!
             let password = passwordTextField.text!
             
-            FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (firUser, error) in
+            Auth.auth().createUser(withEmail: email, password: password, completion: { (firUser, error) in
                 if error != nil {
                     // report error
                 } else if let firUser = firUser {
                     let newUser = User(uid: firUser.uid, username: username, profileImage: self.profileImage)
-                    newUser.save(completion: { (error) in
+                    newUser.save({ (error) in
                         if error != nil {
                             // report
                         } else {
                             // Login User
-                            FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (firUser, error) in
+                            Auth.auth().signIn(withEmail: email, password: password, completion: { (firUser, error) in
                                 if let error = error {
                                     // report error
                                     print(error)

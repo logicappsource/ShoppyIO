@@ -1,9 +1,9 @@
 //
 //  LoginViewController.swift
-//  LogicShoppyIO 
+//  LogicShoppyIO
 //
-//  Created by logicappsource on 11/5/16.
-//  Copyright © 2017 logicappsource. All rights reserved.
+//  Created by LogicAppSourceIO on 20/7/16.
+//  Copyright © 2016 LogicAppSourceIO. All rights reserved.
 //
 
 import UIKit
@@ -13,8 +13,6 @@ class LoginViewController: UITableViewController
 {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
-    private var  mainVC = "main"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,18 +30,17 @@ class LoginViewController: UITableViewController
             let email = emailTextField.text!
             let password = passwordTextField.text!
             
-            FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (firUser, error) in
+            Auth.auth().signIn(withEmail: email, password: password, completion: { (firUser, error) in
                 if let error = error {
-                    self.alert(title: "Oops!", message: error.localizedDescription, buttonTitle: "OK")
+                    self.alert("Oops!", message: error.localizedDescription, buttonTitle: "OK")
                 } else {
-                    self.performSegue(withIdentifier: "main", sender: self)
-                    print("User successfully Authenticated ")
+                    self.dismiss(animated: true, completion: nil)
                 }
             })
         }
     }
     
-    func alert(title: String, message: String, buttonTitle: String) {
+    func alert(_ title: String, message: String, buttonTitle: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: buttonTitle, style: .default, handler: nil)
         alertVC.addAction(action)
