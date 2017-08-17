@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import Firebase
 
 // Caching
 // Core Data
-// Realm
 // SAMCache
 // Firebase offline mode
 
@@ -44,15 +45,28 @@ class FeedProductCell: UITableViewCell {
             productPriceLabel.text = "$\(product.price!)"
         }
     }
+    
+
+    //Fav icon - on click -
+    @IBAction func favroiteProductBtn(_ sender: Any) { //Pass product id
+      
+        let userUID = Auth.auth().currentUser!.uid
+            print(userUID)
+        let ref = DTDatabaseReference.users(uid: userUID).reference().child("shoppingcart").child("wishlist") // Instantiate new child val to FIR
+        
+        //Not finished -->  Missing here !
+        
+        //Store data to firebsae  - userUID + productUID
+        ref.child("users").child("shoppingCart").child("wishlist").setValue(["userUID": userUID])
+        
+        //Detect cell that has been click  -> didselectrowatindexpath
+        
+
+        
+        //Alert the user
+    }
 
 }
-
-
-
-
-
-
-
 
 
 

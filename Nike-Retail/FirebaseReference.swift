@@ -14,6 +14,7 @@ enum DTDatabaseReference
     case root
     case users(uid: String)
     case products(uid: String)
+    case wishlist(uid: String)
     
     // MARK: - Public
     
@@ -38,6 +39,8 @@ enum DTDatabaseReference
             return "users/\(uid)"
         case .products(let uid):
             return "products/\(uid)"
+        case .wishlist(let uid):
+            return "users/\(uid)"
         }
     }
 }
