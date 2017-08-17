@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Nike-Retail.xcodeproj">
+      location = "self:/Users/logicappsource/Desktop/IOS/ShoppyIO/Nike-Retail.xcodeproj">
    </FileRef>
 </Workspace>

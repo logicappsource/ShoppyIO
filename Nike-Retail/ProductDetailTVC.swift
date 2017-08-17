@@ -85,8 +85,10 @@ class ProductDetailTVC: UITableViewController
             let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.suggestionCell, for: indexPath) as! SuggestionTableViewCell
             
             // TODO: - set product suggestions data here.
-//            let products = Product.fetchProducts()
-//            cell.collectionView = products[indexPath.row].images?.first
+ //           let products = Product.fetchProducts()
+//           cell.collectionView = products[indexPath.row].images?.first
+            cell.collectionView.dataSource = self
+            cell.collectionView.delegate = self
             
             return cell
         }
@@ -149,9 +151,9 @@ extension ProductDetailTVC : UICollectionViewDataSource
     {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SuggestionCollectionViewCell", for: indexPath) as! SuggestionCollectionViewCell
         // TODO: - set real data for product suggestions
-        
+
         //cell.image = products[indexPath.item].images?.first
-        cell.product = relatedProducts[indexPath.item]
+     cell.product = relatedProducts[indexPath.item] // cell.product
         return cell
     }
 }

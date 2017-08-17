@@ -12,6 +12,23 @@
  (2) Popup Modal -- alert on added to cart - showing product + price
  
  
+ // Custom Alert ----> present style over fullscreen
+ // Custom wdw follow apple conv.
+ // Animations - loading spinner
+ // UI kit animations -- core animations // bakrgound fade in
+ // Cross fade  ->
+ // Custom transition  rey wenderlich -->
+ 
+ // Cashier -- caching - FIREBAsE cashing frame
+
+ 
+ // Wish lish sync- > firenase storing -- favorite ID  --  user id --
+ // user obj - [produtID]
+ 
+ 
+ 
+ 
+ 
 ****************** More Neat stuff **************************
 **** Show order thank you page and confirmation page after the payment is successfully processed.
  
@@ -25,7 +42,6 @@
 **** Allow store owner to send mass push notification to users.
 **** LIVE chat with store owner and customer support agents!  Socialize Your Apps' Messenger course.
 **** API For clients dashboard to send out PUSH NOTFICAtiONS
-**** Change Images on firebase with API - fetch directly from FIR or dashboard in the app from web
 **** Building WishList
    */
 

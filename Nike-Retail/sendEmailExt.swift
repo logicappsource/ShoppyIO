@@ -15,6 +15,9 @@ var userReciepeContent: String?
 
 
 
+
+
+
 func sendEmail() {
     if MFMailComposeViewController.canSendMail() {
         let mail = MFMailComposeViewController()
