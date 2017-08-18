@@ -15,11 +15,20 @@ import Firebase
 // SAMCache
 // Firebase offline mode
 
+protocol DataEnteredDelegate: class{
+    func userDidSelectFavProduct(_ product: Product, isAdded: Bool)
+}
+
+
+
 class FeedProductCell: UITableViewCell {
+    
+    var delegate: DataEnteredDelegate?
 
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
+    
     
     var product: Product? {
         didSet {
@@ -47,23 +56,19 @@ class FeedProductCell: UITableViewCell {
     }
     
 
-    //Fav icon - on click -
-    @IBAction func favroiteProductBtn(_ sender: Any) { //Pass product id
-      
-        let userUID = Auth.auth().currentUser!.uid
-            print(userUID)
-        let ref = DTDatabaseReference.users(uid: userUID).reference().child("shoppingcart").child("wishlist") // Instantiate new child val to FIR
-        
-        //Not finished -->  Missing here !
-        
-        //Store data to firebsae  - userUID + productUID
-        ref.child("users").child("shoppingCart").child("wishlist").setValue(["userUID": userUID])
-        
-        //Detect cell that has been click  -> didselectrowatindexpath
-        
 
+    
+    //1. append the product.uid + FIRUser.uid ->
+    //2. PerformseguewithIdenttifier()
+    
+    
+    
+       //1. Click fav. icon ->  func  addToWishList(productId, userID)
+    @IBAction func favroiteProductBtn(_ sender: UIButton) { //Pass product id
         
-        //Alert the user
+        guard let product = product else { return }
+        sender.isSelected = !sender.isSelected
+        delegate?.userDidSelectFavProduct(product, isAdded: sender.isSelected)
     }
 
 }
@@ -71,7 +76,23 @@ class FeedProductCell: UITableViewCell {
 
 
 
-
+//extension FeedProductCell: UIAlertViewDelegate {
+//
+//
+//    func alertUser(title: String, message: String, btnTitle: String) {
+//         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//         let action = UIAlertAction(title: title, style: .default, handler: nil)
+//
+//        alertController.addAction(action)
+//        present(alertController,animated: true, completion: nil)
+//
+//    }
+//
+//
+//}
+//
+//
+//
 
 
 

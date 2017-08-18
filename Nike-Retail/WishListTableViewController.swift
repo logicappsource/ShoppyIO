@@ -10,39 +10,40 @@ import Firebase
 
 class WishListTableViewController: UITableViewController {
     
-    //Initliazaing empty array
-    var wishListUserProduct = [Product]()
-    var wishListUserIds = [User]()
-    
-        override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    //Init empty array
+    var wishListUserProduct = [Product]() {
+        didSet {
+            tableView.reloadData()
+        }
     }
     
-   
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //load data here into cells
-      
+        
+        refreshData()
     }
     
-    /****
-    2. Click fave. icon -> global func  addToWishList(productId, userID)
-    2.3  Bool - >  (show icon filled - unfilled if products inside)
-    2.4 Display alert of product added to wishist -> AlertView.
-    3.  Get image/price of the product
-    3.  Store on Firebase
-    4.  Fetch from Firebase
-    5.  Load date into table view
-    6. Return table cell  -> count ->
-    *****/
-
+    func refreshData() {
+        guard let user = Auth.auth().currentUser else { return }
+        let ref = DTDatabaseReference.users(uid: user.uid).reference().child("shoppingcart").child("wishlist")
+        
+        guard let ids = ref.value(forKey: "ids") as? Set<String> else {
+            return
+        }
+        
+        Product.fetchProducts { (products) in
+            var productsInWishlist: [Product] = []
+            for product in products {
+                guard let id = product.uid, ids.contains(id) else { continue }
+                productsInWishlist.append(product)
+            }
+            self.wishListUserProduct = productsInWishlist
+        }
+    }
     
     
     
@@ -62,9 +63,7 @@ class WishListTableViewController: UITableViewController {
         })
     }
     
-    
-    
-    
+
     func fetchWishListUser() {
         //Fecth data user uID
         //Ref.child
@@ -73,31 +72,20 @@ class WishListTableViewController: UITableViewController {
         
     }
     
-    
-    
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        //wishListProduct.count
-        return wishListUserProduct.count  // Dynamic -> instead of static 4
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 1
+        return wishListUserProduct.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath) as! WishListCell //Casted as cell
+        //   6.  Load date into table view
+        let cell = tableView.dequeueReusableCell(withIdentifier: "WishListCell", for: indexPath) as! WishListCell //Casted as cell
         // Configure the cell. -> Wish List Cell
+        let product = wishListUserProduct[indexPath.row]
+        cell.textLabel?.text = product.name
         return cell
     }
     
@@ -148,3 +136,37 @@ class WishListTableViewController: UITableViewController {
     */
 
 }
+
+extension WishListTableViewController: UIAlertViewDelegate{
+    
+    func alertUser(title: String, message: String, btnTitle: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: title, style: .default, handler: nil)
+        
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
+}
+
+
+/****
+ 2  Bool - >  (show icon filled - unfilled if products inside)
+ 2.1. Display alert of product added to wishist -> AlertView.
+ 3.  Get image/price of the product
+ 4.  Store on Firebase
+ 5.  Fetch from Firebase
+ 6.  Load date into table view
+ 7. Return table cell  -> count ->
+ *****/
+
+//2.1 Bool - modify to true if on click.
+//    let iconFilled: Bool = false
+
+//2.. UI alert controller + view
+
+//3. Get image/price of the product  . product.price , product.detal, product.uid
+
+//4. setValue()  ref.child("users").child("shoppingcart").("wishlist") -> Product.uid -> FIRuser.uid
+
+//5. .observesingleEvent -> ref.child("users").child("shoppingcart").("wishlist") -> Product.uid -> FIRuser.uid
+
