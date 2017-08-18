@@ -39,6 +39,7 @@ class BuyButtonCell: UITableViewCell {
 
 
 
+// implement ui alert view - display price - + product
 
 //extension BuyButtonCell: UIAlertViewDelegate {
 //

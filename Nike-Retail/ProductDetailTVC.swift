@@ -15,7 +15,6 @@ extension UIStoryboard {
 class ProductDetailTVC: UITableViewController
 {
     @IBOutlet weak var productImagesHeaderView: ProductImagesHeaderView!
-    
     static let identifier = "ProductDetailVC"
     
     let relatedProducts = Product.fetchProducts()
@@ -31,7 +30,6 @@ class ProductDetailTVC: UITableViewController
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = product.name
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -43,6 +41,10 @@ class ProductDetailTVC: UITableViewController
     // 1 - buyButtonCell
     // 2 - showProductDetail
     // 3 - you might also like this cell
+    
+    //Method for storign favorite products ->
+    
+ 
 
     override func numberOfSections(in tableView: UITableView) -> Int
     {

@@ -1,6 +1,5 @@
 
 
-import UIKit
 
 //class SuggestionCollectionViewCell: UICollectionViewCell
 //{
@@ -13,11 +12,6 @@ import UIKit
 //        }
 //    }
 //}
-//
-//
-
-
-
 
 //
 //  SuggestionCollectionViewCell.swift

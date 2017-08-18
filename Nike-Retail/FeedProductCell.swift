@@ -7,18 +7,28 @@
 //
 
 import UIKit
+import FirebaseDatabase
+import Firebase
 
 // Caching
 // Core Data
-// Realm
 // SAMCache
 // Firebase offline mode
 
+protocol DataEnteredDelegate: class{
+    func userDidSelectFavProduct(_ product: Product, isAdded: Bool)
+}
+
+
+
 class FeedProductCell: UITableViewCell {
+    
+    var delegate: DataEnteredDelegate?
 
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var productPriceLabel: UILabel!
+    
     
     var product: Product? {
         didSet {
@@ -44,20 +54,45 @@ class FeedProductCell: UITableViewCell {
             productPriceLabel.text = "$\(product.price!)"
         }
     }
+    
+
+
+    
+    //1. append the product.uid + FIRUser.uid ->
+    //2. PerformseguewithIdenttifier()
+    
+    
+    
+       //1. Click fav. icon ->  func  addToWishList(productId, userID)
+    @IBAction func favroiteProductBtn(_ sender: UIButton) { //Pass product id
+        
+        guard let product = product else { return }
+        sender.isSelected = !sender.isSelected
+        delegate?.userDidSelectFavProduct(product, isAdded: sender.isSelected)
+    }
 
 }
 
 
 
 
-
-
-
-
-
-
-
-
+//extension FeedProductCell: UIAlertViewDelegate {
+//
+//
+//    func alertUser(title: String, message: String, btnTitle: String) {
+//         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+//         let action = UIAlertAction(title: title, style: .default, handler: nil)
+//
+//        alertController.addAction(action)
+//        present(alertController,animated: true, completion: nil)
+//
+//    }
+//
+//
+//}
+//
+//
+//
 
 
 

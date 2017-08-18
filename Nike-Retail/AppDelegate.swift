@@ -9,6 +9,7 @@
 
  /************   Bug Fixes  **************/
  /*
+ 
  (2) Popup Modal -- alert on added to cart - showing product + price
  
  
