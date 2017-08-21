@@ -10,7 +10,6 @@ import Firebase
 
 class WishListTableViewController: UITableViewController {
     
-    //Init empty array
     var wishListUserProduct = [Product]() {
         didSet {
             tableView.reloadData()
@@ -25,16 +24,18 @@ class WishListTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         refreshData()
+        
     }
     
     func refreshData() {
         guard let user = Auth.auth().currentUser else { return }
         let ref = DTDatabaseReference.users(uid: user.uid).reference().child("shoppingcart").child("wishlist")
         
-        guard let ids = ref.value(forKey: "ids") as? Set<String> else {
+        guard let ids = ref.value(forKey: "ids") as? Set<String> else { // To dict instead -> Set<String>
             return
         }
         
+        //Fetching all products -> Future impl- change to one product only id = id
         Product.fetchProducts { (products) in
             var productsInWishlist: [Product] = []
             for product in products {
@@ -64,6 +65,12 @@ class WishListTableViewController: UITableViewController {
     }
     
 
+    
+    // read from firebase ref -> wishlist
+    // fetch product Id -> user id
+    // if (productID == backendProductID)
+    //Display in [] -> table cells
+    
     func fetchWishListUser() {
         //Fecth data user uID
         //Ref.child
