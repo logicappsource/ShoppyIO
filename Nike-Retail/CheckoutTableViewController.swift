@@ -24,6 +24,7 @@ class CheckoutTableViewController: UITableViewController
     @IBOutlet weak var submitOrderButton: UIButton!
     
     var shoppingCart: ShoppingCart!
+    var delegate : UserPurchaseInfoDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,8 @@ class CheckoutTableViewController: UITableViewController
                 
                 taxLabel.text = "$\(tax)"
                 totalLabel.text = "$\(total)"
+                
+                userReceivePurchaseInfo(shoppingInfo: shoppingCart) //Call on success authorized instead of here in UI
             }
         }
     }
@@ -124,49 +127,22 @@ class CheckoutTableViewController: UITableViewController
 }
 
 
+protocol UserPurchaseInfoDelegate {
+    func userReceivePurchaseInfo(shoppingInfo: ShoppingCart)
+}
 
 
-
-
-
+//Protocol + delegate to send data
 
 extension CheckoutTableViewController {
     
-//
-//    func stripeCreditCardInformation() {
-//        // 1 - initiate a stripe card
-//        var stripeCard = STPCard()
-//
-//        // 1.2 - get the credit card information from the text fields
-//        if expirationDateTextField.text?.isEmpty == false {
-//            let expirationDate = expirationDateTextField.text?.components(separatedBy: "/")
-//            let expMonth = UInt((expirationDate?[0])!)!
-//            let expYear = UInt((expirationDate?[1])!)!
-//
-//            // 2 - send the card information to stripe to get a token
-//            stripeCard.number = cardNumberTextField.text
-//            stripeCard.cvc = securityTextField.text
-//            stripeCard.expMonth = expMonth
-//            stripeCard.expYear = expYear
-//
-//            // 3 - validate the card numbers
-//            STPAPIClient.shared().createToken(withCard: stripeCard, completion: { (token, error) in
-//                // we have an error or not
-//                if error != nil {
-//                    // handle the error
-//                    self.handleError(error: error!)
-//                    return
-//                } else {
-//                    // we get a token
-//                    // post the token to Stripe using our web server!!!
-//                    self.postToStripe(token: token!)
-//                }
-//
-//            })
-//        }
-//
-//    }
-//
+    func userReceivePurchaseInfo(shoppingInfo: ShoppingCart) {
+        let priceTotal =  shoppingCart.total
+        let tax = shoppingCart.tax
+        let shippingCost = shoppingCart.shipping
+        print(" User info needs to be passed to other VC price total \(priceTotal)  ->  Tax \(tax)   -->   shippingcosts \(shippingCost)")
+    }
+    
     
     func handleError(error: Error)
     {
@@ -180,7 +156,11 @@ extension CheckoutTableViewController {
     }
     
     
+    
 }
+
+
+
 
 
 

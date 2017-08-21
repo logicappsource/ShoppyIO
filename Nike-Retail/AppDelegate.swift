@@ -6,12 +6,9 @@
 //  Copyright © 2017 LogicAppSourceIO All rights reserved.
 //
 
-
- /************   Bug Fixes  **************/
  /*
  
  (2) Popup Modal -- alert on added to cart - showing product + price
- 
  
  // Custom Alert ----> present style over fullscreen
  // Custom wdw follow apple conv.
@@ -22,14 +19,9 @@
  
  // Cashier -- caching - FIREBAsE cashing frame
 
+
  
- // Wish lish sync- > firenase storing -- favorite ID  --  user id --
- // user obj - [produtID]
- 
- 
- 
- 
- 
+
 ****************** More Neat stuff **************************
 **** Show order thank you page and confirmation page after the payment is successfully processed.
  

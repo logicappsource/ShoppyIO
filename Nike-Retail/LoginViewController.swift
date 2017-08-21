@@ -29,6 +29,8 @@ class LoginViewController: UITableViewController
         #endif
     }
 
+
+    
     @IBAction func loginDidTap()
     {
         if emailTextField.text != "" && (passwordTextField.text?.characters.count)! > 6 {
