@@ -12,7 +12,7 @@ import Firebase
 
 class WishListTableViewController: UITableViewController {
     
-    var wishListUserProduct = [Product]() {
+    var wishListUserProducts = [Product]() {
         didSet {
             tableView.reloadData()
         }
@@ -53,7 +53,7 @@ class WishListTableViewController: UITableViewController {
                             print( "Matching userID from Frontend to Backend ->  \(userID) +  atching productID from Frontend to Backend ->  \(productID) ")
                             
                             let product = Product(dictionary: dictionary)
-                            self.wishListUserProduct.append(product)
+                            self.wishListUserProducts.append(product)
 
                             
                             //Fetch Products
@@ -63,7 +63,7 @@ class WishListTableViewController: UITableViewController {
                                     
                                     //If id from backend is == frontend
                                     if productID == product.uid {
-                                        self.wishListUserProduct.append(product)
+                                        self.wishListUserProducts.append(product)
                                         self.alertUser(title: "SuccessFully", message: "Added productID \(productID)", btnTitle: "OK")
                                     }
                                 }
@@ -81,19 +81,42 @@ class WishListTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wishListUserProduct.count
+        return wishListUserProducts.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //   6.  Load date into table view
         let cell = tableView.dequeueReusableCell(withIdentifier: "WishListCell", for: indexPath) as! WishListCell //Casted as cell
+       
         // Configure the cell. -> Wish List Cell
-        let product = wishListUserProduct[indexPath.row]
+        let product = wishListUserProducts[indexPath.row]
         cell.textLabel?.text = product.name
         return cell
     }
 
 }
+
+
+extension WishListTableViewController {
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == UITableViewCellEditingStyle.delete) {
+            
+            //Display Alert
+            if let product = wishListUserProducts[indexPath.item] as? Product {
+               //Handle deleting
+                wishListUserProducts.remove(at: indexPath.item)
+            }
+            self.tableView.reloadData()
+        }
+    }
+    
+}
+
 
 extension WishListTableViewController: UIAlertViewDelegate{
     
