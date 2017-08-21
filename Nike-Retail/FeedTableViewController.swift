@@ -116,12 +116,9 @@ extension FeedTableViewController: DataEnteredDelegate {
                     "productId": productId]
         
         //Store product id <-> user id -> child values
-
-        let childUpdates = ["/posts/\(key)":post,"/user-posts/\(user.uid)/\(key)/": post]
+        let childUpdates = ["/wishlist/\(key)":post,"/user-posts/\(user.uid)/\(key)/": post]
         ref.updateChildValues(childUpdates)
-        
-        
-        print(childUpdates)
+        print("Child update stored onto to FIR \(childUpdates)")
         
 }
 
