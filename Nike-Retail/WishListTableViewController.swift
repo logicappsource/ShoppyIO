@@ -22,12 +22,16 @@ class WishListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshData()
+        tableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        tableView.reloadData()
     }
+    
+    
+    
         //Fetch observe data child from FIREBASE
     func refreshData() { //_ completion: @escaping ([Product]) -> Void
 
@@ -64,7 +68,8 @@ class WishListTableViewController: UITableViewController {
                                     //If id from backend is == frontend
                                     if productID == product.uid {
                                         self.wishListUserProducts.append(product)
-                                        self.alertUser(title: "SuccessFully", message: "Added productID \(productID)", btnTitle: "OK")
+                                        
+                                        self.alertUser(title: "SuccessFully", message: "Added your product :  \(productID)", btnTitle: "OK")
                                     }
                                 }
                             })
@@ -91,6 +96,8 @@ class WishListTableViewController: UITableViewController {
         // Configure the cell. -> Wish List Cell
         let product = wishListUserProducts[indexPath.row]
         cell.textLabel?.text = product.name
+        //cell.imageview.image = product.image -> same with lbl
+        
         return cell
     }
 
@@ -108,7 +115,7 @@ extension WishListTableViewController {
             
             //Display Alert
             if let product = wishListUserProducts[indexPath.item] as? Product {
-               //Handle deleting
+               //Handle delete
                 wishListUserProducts.remove(at: indexPath.item)
             }
             self.tableView.reloadData()
