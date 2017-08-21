@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,42 +19,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SBU-hY-YCr">
-                        <rect key="frame" x="0.0" y="0.0" width="88" height="44"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="mpb-zD-Ggs"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ckz-Wx-pyX">
-                        <rect key="frame" x="107" y="12" width="65" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ckz-Wx-pyX">
+                        <rect key="frame" x="0.0" y="0.0" width="45" height="47"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLX-ZD-54J">
-                        <rect key="frame" x="251" y="12" width="39" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLX-ZD-54J">
+                        <rect key="frame" x="281" y="-1" width="39" height="45"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="tLX-ZD-54J" secondAttribute="bottom" constant="2.5" id="4gU-RB-1EP"/>
-                    <constraint firstAttribute="bottom" secondItem="SBU-hY-YCr" secondAttribute="bottom" constant="-0.5" id="N5c-WB-sHt"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Ckz-Wx-pyX" secondAttribute="bottom" constant="2.5" id="W4w-Bl-iZu"/>
-                    <constraint firstItem="Ckz-Wx-pyX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="aha-K2-os0"/>
-                    <constraint firstAttribute="trailing" secondItem="tLX-ZD-54J" secondAttribute="trailing" constant="30" id="bfT-Pp-FCW"/>
-                    <constraint firstItem="tLX-ZD-54J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="4" id="cYB-4F-WbM"/>
-                    <constraint firstItem="SBU-hY-YCr" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="g1C-no-EoJ"/>
-                    <constraint firstItem="Ckz-Wx-pyX" firstAttribute="centerY" secondItem="SBU-hY-YCr" secondAttribute="centerY" id="iyz-7H-4l8"/>
-                    <constraint firstItem="SBU-hY-YCr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jSQ-I6-X27"/>
-                    <constraint firstAttribute="trailing" secondItem="SBU-hY-YCr" secondAttribute="trailing" constant="232" id="pWl-rk-dOU"/>
-                    <constraint firstItem="SBU-hY-YCr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="zrS-Vq-Li8"/>
+                    <constraint firstItem="Ckz-Wx-pyX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="7m8-Se-mgn"/>
+                    <constraint firstItem="tLX-ZD-54J" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="-1" id="F08-XD-9Bc"/>
+                    <constraint firstAttribute="bottom" secondItem="tLX-ZD-54J" secondAttribute="bottom" constant="-0.5" id="JYp-Vm-1dD"/>
+                    <constraint firstAttribute="bottom" secondItem="Ckz-Wx-pyX" secondAttribute="bottom" constant="-3.5" id="SRQ-HH-sSa"/>
+                    <constraint firstItem="Ckz-Wx-pyX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YfO-M9-bV5"/>
+                    <constraint firstAttribute="trailing" secondItem="tLX-ZD-54J" secondAttribute="trailing" id="qMg-rf-XSq"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="imageViewCell" destination="SBU-hY-YCr" id="WDF-BQ-53U"/>
                 <outlet property="productName" destination="Ckz-Wx-pyX" id="fCe-e0-CIv"/>
                 <outlet property="productPrice" destination="tLX-ZD-54J" id="A6G-lg-1pf"/>
             </connections>
