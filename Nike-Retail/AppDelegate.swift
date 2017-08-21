@@ -62,7 +62,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureAppearance()
         configureStripe()
 //        testUploadProducts()
-
         return true
     }
     

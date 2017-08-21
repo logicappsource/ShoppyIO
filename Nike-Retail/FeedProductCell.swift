@@ -55,12 +55,6 @@ class FeedProductCell: UITableViewCell {
         }
     }
     
-
-
-    
-    //1. append the product.uid + FIRUser.uid ->
-    //2. PerformseguewithIdenttifier()
-    
     
     
        //1. Click fav. icon ->  func  addToWishList(productId, userID)

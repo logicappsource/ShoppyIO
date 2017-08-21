@@ -5,75 +5,79 @@
 //  Created by LogicAppSourceIO on 17/08/2017.
 //  Copyright © 2017 LogicAppSource. All rights reserved.
 
+//Store later in user cache ->  NSuserdefaults
+
 import UIKit
 import Firebase
 
 class WishListTableViewController: UITableViewController {
     
-    //Init empty array
     var wishListUserProduct = [Product]() {
         didSet {
             tableView.reloadData()
         }
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        refreshData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        refreshData()
     }
-    
-    func refreshData() {
+        //Fetch observe data child from FIREBASE
+    func refreshData() { //_ completion: @escaping ([Product]) -> Void
+
+         //Error handling
         guard let user = Auth.auth().currentUser else { return }
-        let ref = DTDatabaseReference.users(uid: user.uid).reference().child("shoppingcart").child("wishlist")
         
-        guard let ids = ref.value(forKey: "ids") as? Set<String> else {
-            return
-        }
-        
-        Product.fetchProducts { (products) in
-            var productsInWishlist: [Product] = []
-            for product in products {
-                guard let id = product.uid, ids.contains(id) else { continue }
-                productsInWishlist.append(product)
-            }
-            self.wishListUserProduct = productsInWishlist
-        }
-    }
-    
-    
-    
-    func fetchProductsUid(_ completion: @escaping ([Product]) -> Void ) {
-        
-        Database.database().reference().child("products").observeSingleEvent(of: .value, with: { snapshot in
+        //Init Ref
+        DTDatabaseReference.users(uid: user.uid).reference().child("shoppingcart").child("wishlist").observeSingleEvent(of: .value, with: { (snapshot) in
             
-             var products = [Product]()
+            if let snapshot = snapshot.value as? [DataSnapshot] { return }
             
-            for childSnapshot in snapshot.children {
-                if let childSnapshot = childSnapshot as? DataSnapshot, let dictionary = childSnapshot.value as? [String: Any] {
-                    let product = Product(dictionary: dictionary)
-                    products.append(product)
-                    print(products)
+                for childSnapshot in snapshot.children {
+                    if let childSnapshot = childSnapshot as? DataSnapshot, let dictionary = childSnapshot.value as? [String: Any] {
+                       
+                        let userID = dictionary["uid"] as? String  ?? ""
+                    
+                        if Auth.auth().currentUser?.uid ==  userID {  //Match User  ID
+                       
+                             var wishListUserArray = [String]()     //Init
+                            
+                            //Product ID from Backend
+                            let productID  = dictionary["productId"] as? String ?? ""
+                            print( "Matching userID from Frontend to Backend ->  \(userID) +  atching productID from Frontend to Backend ->  \(productID) ")
+                            
+                            let product = Product(dictionary: dictionary)
+                            self.wishListUserProduct.append(product)
+
+                            
+                            //Fetch Products
+                            Product.fetchProducts({ (products) in
+                                for product in products {
+                                    guard let id = product.uid  else { return }
+                                    
+                                    //If id from backend is == frontend
+                                    if productID == product.uid {
+                                        self.wishListUserProduct.append(product)
+                                        self.alertUser(title: "SuccessFully", message: "Added productID \(productID)", btnTitle: "OK")
+                                    }
+                                }
+                            })
+                        
+                        }
+                    }
                 }
-            }
-        })
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
-
-    func fetchWishListUser() {
-        //Fecth data user uID
-        //Ref.child
-        //snapshop children
-        //loop
-        
-    }
     
-
-
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,6 +92,20 @@ class WishListTableViewController: UITableViewController {
         cell.textLabel?.text = product.name
         return cell
     }
+
+}
+
+extension WishListTableViewController: UIAlertViewDelegate{
+    
+    func alertUser(title: String, message: String, btnTitle: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: title, style: .default, handler: nil)
+        
+        alertController.addAction(action)
+        self.present(alertController, animated: true, completion: nil)
+    }
+}
+
     
 
     /*
@@ -135,38 +153,73 @@ class WishListTableViewController: UITableViewController {
     }
     */
 
-}
-
-extension WishListTableViewController: UIAlertViewDelegate{
-    
-    func alertUser(title: String, message: String, btnTitle: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: title, style: .default, handler: nil)
-        
-        alertController.addAction(action)
-        self.present(alertController, animated: true, completion: nil)
-    }
-}
 
 
-/****
- 2  Bool - >  (show icon filled - unfilled if products inside)
- 2.1. Display alert of product added to wishist -> AlertView.
- 3.  Get image/price of the product
- 4.  Store on Firebase
- 5.  Fetch from Firebase
- 6.  Load date into table view
- 7. Return table cell  -> count ->
- *****/
+//    func fetchProductsUid(_ completion: @escaping ([Product]) -> Void ) {
+//
+//        Database.database().reference().child("products").observeSingleEvent(of: .value, with: { snapshot in
+//
+//             var products = [Product]()
+//
+//            for childSnapshot in snapshot.children {
+//                if let childSnapshot = childSnapshot as? DataSnapshot, let dictionary = childSnapshot.value as? [String: Any] {
+//                    let product = Product(dictionary: dictionary)
+//                    products.append(product)
+//                    print(products)
+//                }
+//            }
+//        })
+//    }
 
-//2.1 Bool - modify to true if on click.
-//    let iconFilled: Bool = false
 
-//2.. UI alert controller + view
+//    func refreshData() {
+//        guard let user = Auth.auth().currentUser else { return }
+//        let ref = DTDatabaseReference.users(uid: user.uid).reference().child("shoppingcart").child("wishlist")
+//
+//        guard let ids = ref.value(forKey: "ids") as? Set<String> else { // To dict instead -> Set<String>
+//            return
+//        }
+//
+//        //Fetching all products -> Future impl- change to one product only id = id
+//        Product.fetchProducts { (products) in
+//            var productsInWishlist: [Product] = []
+//            for product in products {
+//                guard let id = product.uid, ids.contains(id) else { continue }
+//                productsInWishlist.append(product)
+//            }
+//            self.wishListUserProduct = productsInWishlist
+//        }
+//    }
 
-//3. Get image/price of the product  . product.price , product.detal, product.uid
 
-//4. setValue()  ref.child("users").child("shoppingcart").("wishlist") -> Product.uid -> FIRuser.uid
 
-//5. .observesingleEvent -> ref.child("users").child("shoppingcart").("wishlist") -> Product.uid -> FIRuser.uid
+
+
+
+//Fetching all products -> Future impl- change to one product only id = id
+//        Product.fetchProducts { (products) in
+//            var productsInWishlist: [Product] = []
+//            for product in products {
+//                guard let id = product.uid, ids.contains(id) else { continue }
+//                productsInWishlist.append(product)
+//            }
+//            self.wishListUserProduct = productsInWishlist
+//        }
+//    }
+
+
+//Compare two arrays if containing same id  = display to table cell
+
+//                            for id1 in wishListUserArray {
+//                                for id2 in self.wishListUserProduct {
+//                                    if id1 == id2 {
+//                                        //Apend that [id] to 3 array finalWishlist
+//                                    } else {
+//                                        //print false
+//                                    }
+//                                }
+//                            }
+//
+// append specific productID to [wishlistarray]
+
 

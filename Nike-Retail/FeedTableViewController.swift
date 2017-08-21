@@ -102,54 +102,119 @@ class FeedTableViewController: UITableViewController
 
 extension FeedTableViewController: DataEnteredDelegate {
     
-    func userDidSelectFavProduct(_ product: Product, isAdded: Bool) {
+    func userDidSelectFavProduct(_ product: Product, isAdded: Bool) { //
         guard let user = Auth.auth().currentUser, let productId = product.uid else { return }
         
         print("on click user ID  \(user.uid) \n on click product ID \(productId)")
         
-        let ref = DTDatabaseReference.users(uid: user.uid).reference().child("shoppingcart").child("wishlist") // Instantiate
-
-       Database.database().reference().child("users").child("shoppingcart").child("wishlist").observeSingleEvent(of: .value, with: { snapshot in
-            
-            print("Firebase observe request success \n ")
-            var products = [Product]()
+        //Create new ref on firebase
+        let ref = DTDatabaseReference.users(uid: user.uid).reference().child("shoppingcart")
+        
     
-            for childSnapshot in snapshot.children {
-                print(snapshot.children)
-                if let childSnapshot = childSnapshot as? DataSnapshot, let dictionary = childSnapshot.value as? [String: Any] {
-                    let product = Product(dictionary: dictionary)
-              
-                    print("prodcut from fire base observation \(product.name)")
-              
-                    //Get or Set value ?
-                    guard let ids = ref.child("wishlist").value(forKey: "ids") as? Set <String> else { return }
-                    products.append(product)
-                    print("Products appended")
-                    
-                    var newIds = ids
-                    if isAdded {
-                        newIds.insert(productId)
-                            print("Prodct \(productId) inserted")
-                    } else {
-                        newIds.remove(productId)
-                            print("Product \(productId) is removed")
-                    }
-                  ref.child("wishlist").setValue(newIds, forKey: "ids")
-                }
-            }
-        })
+        let key = ref.child("wishlist").childByAutoId().key
+        let post = ["uid": user.uid,
+                    "productId": productId]
         
+        //Store product id <-> user id -> child values
+        let childUpdates = ["/wishlist/\(key)":post,"/user-posts/\(user.uid)/\(key)/": post]
+        ref.updateChildValues(childUpdates)
+        print("Child update stored onto to FIR \(childUpdates)")
         
-//        //oberseve single event
-//        guard let ids = ref.value(forKey: "ids") as? Set<String> else {
-//            return
-//        }
-        
-       
-    }
 }
 
 
+//
+//
+//    var products = [Product]()
+//
+//    let value = snapshot.value as? NSDictionary
+//    let id = value?["ids"] as? String ?? ""
+//    for childSnapshot in snapshot.children {
+//
+//    if let childSnapshot = childSnapshot as? DataSnapshot, let dictionary = childSnapshot.value as? [String: Any] {
+//    let product = Product(dictionary: dictionary)
+//
+//    guard let ids = ref.child("wishlist").value(forKey: "ids") as? [String: Any] else { return }
+//    products.append(product)
+//
+//    var newIds = ids
+//    if isAdded {
+//    newIds.append(productId)
+//    } else {
+//    newIds.remove(productId)
+//    }
+//    ref.child("wishlist").setValue(newIds, forKey: "ids")
+//    }
+//    }
+//})
+
+
+
+
+
+
+
+
+
+
+
+
+//extension FeedTableViewController: DataEnteredDelegate {
+//
+//    func userDidSelectFavProduct(_ product: Product, isAdded: Bool) {
+//        guard let user = Auth.auth().currentUser, let productId = product.uid else { return }
+//
+//        print("on click user ID  \(user.uid) \n on click product ID \(productId)")
+//
+//        let ref = DTDatabaseReference.users(uid: user.uid).reference().child("shoppingcart").child("wishlist") // Instantiate
+//
+//        Database.database().reference().child("users").child("shoppingcart").child("wishlist").observeSingleEvent(of: .value, with: { snapshot in
+//
+//            print("Firebase observe request success \n ")
+//            var products = [Product]()
+//
+//            for childSnapshot in snapshot.children {
+//                print(snapshot.children)
+//                if let childSnapshot = childSnapshot as? DataSnapshot, let dictionary = childSnapshot.value as? [String: Any] {
+//                    let product = Product(dictionary: dictionary)
+//
+//                    print("prodcut from fire base observation \(product.name)")
+//
+//
+//                    guard let ids = ref.child("wishlist").value(forKey: "ids") as? Set <String> else { return }
+//                    products.append(product)
+//                    print("Products appended")
+//
+//                    var newIds = ids
+//                    if isAdded {
+//                        newIds.insert(productId)
+//                        print("Prodct \(productId) inserted")
+//                    } else {
+//                        newIds.remove(productId)
+//                        print("Product \(productId) is removed")
+//                    }
+//                    ref.child("wishlist").setValue(newIds, forKey: "ids")
+//                }
+//            }
+//        })
+//
+//
+//        //        //oberseve single event
+//        //        guard let ids = ref.value(forKey: "ids") as? Set<String> else {
+//        //            return
+//        //        }
+//
+//
+//    }
+//}
+
+
+
+
+
+
+
+}
 
 
 
