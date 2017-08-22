@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 /*
- 
  **********************CONFIGURATION**********************
  
  1. Download your own Googleinfo.plist and simply drag it into the project
@@ -20,7 +19,7 @@ import UIKit
  
  */
 
-//CONSTANTS GLOBAL AVAILBE
+// CONSTANTS GLOBAL AVAILBE
 let API_STRIPE_PUBLIC = ""      //Checkoutableviewcontroller -> PASS PARAMETER
 let API_STRIPE_SECRET = ""     //Checkoutableviewcontroller -> PASS PARAMETER
 let STRIPE_CALLBACK_URL = ""   //Checkoutableviewcontroller -> PASS PARAMETER
@@ -30,11 +29,43 @@ let STRIPE_CALLBACK_URL = ""   //Checkoutableviewcontroller -> PASS PARAMETER
 
 
 
-//Modify Logo
-//Switch your own name of Image here ->
+// Modify Logo
+// Switch your own name of Image here ->
 let logoCustom = "logicproduction" //Path -> logoImage in WelcomeViewController
 
 
+// Terms & Conditions webview
+let url_terms = ""
+
+
+
+
+//Needs to implemnt to lin
+//extension WebViewController {
+//
+//    init(html: String) {
+//        super.init(nibName: nil, bundle: nil)
+//
+//        let webView = UIWebView(frame: self.view.bounds)
+//        webView.loadHTMLString(html, baseURL: nil)
+//        self.view.addSubview(view)
+//    }
+//
+//    required init(coder aDecoder: NSCoder) {
+//        fatalError("init(cder:) has not been implemented)
+//    }
+//
+//
+//    func didTapdone(){
+//        self.navigationController.presentViewController.dissmis(animated: true, completion: nil)
+//    }
+//
+//
+//
+//}
+//
+//
+//
 
 
 
