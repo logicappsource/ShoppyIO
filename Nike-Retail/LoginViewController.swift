@@ -48,12 +48,7 @@ class LoginViewController: UITableViewController
         }
     }
     
-    func alert(_ title: String, message: String, buttonTitle: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: buttonTitle, style: .default, handler: nil)
-        alertVC.addAction(action)
-        present(alertVC, animated: true, completion: nil)
-    }
+    
   
     @IBAction func backDidTap(_ sender: Any)
     {
@@ -75,7 +70,18 @@ extension LoginViewController : UITextFieldDelegate
         
         return true
     }
+    
+    func alert(_ title: String, message: String, buttonTitle: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: buttonTitle, style: .default, handler: nil)
+        alertVC.addAction(action)
+        present(alertVC, animated: true, completion: nil)
+    }
+
+    
 }
+
+
 
 
 
