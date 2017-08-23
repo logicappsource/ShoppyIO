@@ -9,13 +9,22 @@
 import Foundation
 import UIKit
 
+/*********** NEAT FEATURES *****/
+// CREATE SWITCH -> Theme
+// Modify Categories Name ->
+// Hook up API -> Backend Admin Panel
+// API SHOWS PRICE SALES -> Emailed notification on Sale ->
+// Users signup -> Upload -> Image -> Change categories
+// Social Login/Signup
+// Webview -> Display terms + instructions + read me + company info
+
+
 /*
  **********************CONFIGURATION**********************
  
  1. Download your own Googleinfo.plist and simply drag it into the project
- 2. Create an Account www.stripe.com - > Set UP STRIPE API KEYS ->
- 3. Drago your logo into Assets.xcassets -> Change ypur name in the variable
-
+ 2. Create an Account www.stripe.com - > Set UP STRIPE API KEYS
+ 3. Drago your logo into Assets.xcassets -> Change your name path to image under "logo"
  
  */
 
@@ -23,9 +32,6 @@ import UIKit
 let API_STRIPE_PUBLIC = ""      //Checkoutableviewcontroller -> PASS PARAMETER
 let API_STRIPE_SECRET = ""     //Checkoutableviewcontroller -> PASS PARAMETER
 let STRIPE_CALLBACK_URL = ""   //Checkoutableviewcontroller -> PASS PARAMETER
-
-
-// CREATE SWITCH -> Theme
 
 
 
