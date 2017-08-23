@@ -32,6 +32,10 @@ class CategoriesVC: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+//    override var preferredStatusBarStyle: UIStatusBarStyle {
+//        return .default
+//    }
     
     public struct Storyboard {
         static let CellIdentifier = "CategoryCell2"
@@ -55,5 +59,24 @@ extension CategoriesVC: UICollectionViewDataSource {
         
         return cell
     }
+}
+
+extension CategoriesVC: UIScrollViewDelegate { //UI Scroll lets element be in full and not half of screen -> (better Scroll Experince)
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        let layout = self.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
+        
+        var offset = targetContentOffset.pointee
+        let index = (offset.x + scrollView.contentInset.left)  / cellWidthIncludingSpacing
+        let roundedIndex = round(index)
+        //Calc UI -
+        offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left  , y: -scrollView.contentInset.top)
+        targetContentOffset.pointee = offset
+        
+        
+    }
     
 }
+
+

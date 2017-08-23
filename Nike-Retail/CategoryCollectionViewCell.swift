@@ -29,8 +29,11 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     featuredImageView.image = category.featuredImage
     }
     
-    
-    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = 5
+        self.clipsToBounds = true
+    }
     
     
 }
