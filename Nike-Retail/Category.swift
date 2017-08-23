@@ -16,34 +16,25 @@ class Category{
     //Mark: - Public Api
     
     //Model
+    var category = [String]()
     var categoryName: String?
     var categoryUid: String?
     var numberOfProductsInCategory: Int?
     var featuredImage: UIImage!
     
-    init(categoryName: String, categoryUid: String, numberOfProductsInCategory: Int, featuredImage: UIImage!) {
+    init(category: [String], categoryName: String, categoryUid: String, numberOfProductsInCategory: Int, featuredImage: UIImage!) {
         self.categoryName = categoryName
         self.categoryUid = categoryUid
         self.numberOfProductsInCategory = numberOfProductsInCategory
         self.featuredImage = featuredImage
     }
     
-//    override init(uid: String?, name: String?, images: [UIImage]?, price: Double?, description: String?, detail: String?, relatedProductUIDs: [String]?) {
-//        self.uid = uid
-//        self.name = name
-//        self.images = images
-//        self.price = price
-//        self.description = description
-//        self.detail = detail
-//        self.relatedProductUIDs = relatedProductUIDs
-//    }
-    
-    //Initializer
+    //change this later instead of Static to Dynamic -> override with FIR Api
     
     //MARK: - Private
     static func createCategory() -> [Category] {
-        return [ Category(categoryName: "Travel Gear", categoryUid: "232", numberOfProductsInCategory: 32, featuredImage: UIImage(named: "p2")!),Category(categoryName: "Travel Gear", categoryUid: "232", numberOfProductsInCategory: 32, featuredImage: UIImage(named: "p2"))]
-    } //change this later instead of Static to Dynamic -<
+        return [ Category(category: ["category1"],categoryName: "Travel Gear", categoryUid: "232", numberOfProductsInCategory: 32, featuredImage: UIImage(named: "p2")!),Category(category: ["category2"],categoryName: "Clothes Gear", categoryUid: "232", numberOfProductsInCategory: 32, featuredImage: UIImage(named: "r1")), Category(category: ["category3"],categoryName: "Outdoor Gear", categoryUid: "232", numberOfProductsInCategory: 32, featuredImage: UIImage(named: "p2")!)]
+    }
     
     
     

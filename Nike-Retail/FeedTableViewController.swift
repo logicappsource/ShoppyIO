@@ -4,7 +4,10 @@
 //
 //  Created by LogicAppSourceIO on 15/3/17.
 //  Copyright © 2017 LogicAppSourceIO.. All rights reserved.
-//
+
+/************** IMPLEMENTING CATEGORIES ******/
+// Make This Feed Into : Clothes Feed Category
+// Change FeedProductCell ->  ClotheFeedProductCell
 
 import UIKit
 import Firebase

@@ -5,7 +5,6 @@
 //  Created by LogicAppSourceIO on 22/08/2017.
 //  Copyright © 2017 LogicAppSource. All rights reserved.
 //
-
 import UIKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
