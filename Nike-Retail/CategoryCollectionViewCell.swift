@@ -25,8 +25,8 @@ class CategoryCollectionViewCell: UICollectionViewCell {
 
     
     func updateUI() {
-        categoryTitleLbl.text! = category.categoryName!
-        featuredImageView.image = category.featuredImage
+    categoryTitleLbl.text! = category.categoryName!
+    featuredImageView.image = category.featuredImage
     }
     
     
