@@ -42,7 +42,7 @@ class Category{
     
     //MARK: - Private
     static func createCategory() -> [Category] {
-        return [ Category(categoryName: "Travel Gear", categoryUid: "232", numberOfProductsInCategory: 32, featuredImage: UIImage(named: "p2") )]
+        return [ Category(categoryName: "Travel Gear", categoryUid: "232", numberOfProductsInCategory: 32, featuredImage: UIImage(named: "p2")!),Category(categoryName: "Travel Gear", categoryUid: "232", numberOfProductsInCategory: 32, featuredImage: UIImage(named: "p2"))]
     } //change this later instead of Static to Dynamic -<
     
     
