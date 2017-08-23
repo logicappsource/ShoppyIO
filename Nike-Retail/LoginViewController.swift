@@ -8,11 +8,17 @@
 
 import UIKit
 import Firebase
+import GoogleSignIn
 
-class LoginViewController: UITableViewController
+class LoginViewController: UITableViewController, GIDSignInUIDelegate
 {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var signInButton: GIDSignInButton!
+    
+    @IBAction func googleAuthPressed(_ sender: Any) {
+        GIDSignIn.sharedInstance().signIn()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,16 +29,52 @@ class LoginViewController: UITableViewController
         emailTextField.delegate = self
         passwordTextField.delegate = self
         
+        GIDSignIn.sharedInstance().uiDelegate = self
+        
+        
         #if DEBUG
             emailTextField.text = "klomanden@gmail.com"
             passwordTextField.text = "klomanden"
         #endif
     }
-
-
     
+    
+    //Google Auth
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error?) {
+        // ...
+        if let error = error {
+            // ...
+            print("Successfully Authenticated")
+            self.performSegue(withIdentifier: "loginMain", sender: self)
+
+            return
+        }
+        
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken, accessToken: authentication.accessToken)
+        // ...
+        //self.performSegue(withIdentifier: "loginMain", sender: self)
+
+    }
+    
+
     @IBAction func loginDidTap()
     {
+            signAuthCreds()
+    }
+    
+    
+  
+    @IBAction func backDidTap(_ sender: Any)
+    {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+}
+
+extension LoginViewController {
+    
+    func signAuthCreds() {
         if emailTextField.text != "" && (passwordTextField.text?.characters.count)! > 6 {
             let email = emailTextField.text!
             let password = passwordTextField.text!
@@ -46,16 +88,10 @@ class LoginViewController: UITableViewController
                 }
             })
         }
+        
     }
-    
-    
-  
-    @IBAction func backDidTap(_ sender: Any)
-    {
-        self.dismiss(animated: true, completion: nil)
-    }
-
 }
+
 
 extension LoginViewController : UITextFieldDelegate
 {
@@ -71,17 +107,19 @@ extension LoginViewController : UITextFieldDelegate
         return true
     }
     
+
+    
+}
+
+extension LoginViewController {
+    
     func alert(_ title: String, message: String, buttonTitle: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: buttonTitle, style: .default, handler: nil)
         alertVC.addAction(action)
         present(alertVC, animated: true, completion: nil)
     }
-
-    
 }
-
-
 
 
 

@@ -9,11 +9,13 @@
 import UIKit
 import FirebaseDatabase
 import Firebase
+import GoogleSignIn
 
 // Caching
 // Core Data
 // SAMCache
 // Firebase offline mode
+// Google Sign in
 
 protocol DataEnteredDelegate: class{
     func userDidSelectFavProduct(_ product: Product, isAdded: Bool)

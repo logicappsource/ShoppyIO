@@ -36,5 +36,7 @@
 	<string>1:374301315418:ios:a1c68b77cf94d9f1</string>
 	<key>DATABASE_URL</key>
 	<string>https://shoppingio-23114.firebaseio.com</string>
+	<key></key>
+	<string></string>
 </dict>
 </plist>

@@ -10,6 +10,7 @@ target 'Nike-Retail' do
     pod 'Firebase/Auth'
     pod 'Firebase/Database'
     pod 'Firebase/Storage'
+    pod 'GoogleSignIn'
 
     # Stripe
     pod 'Stripe'
